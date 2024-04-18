@@ -1,5 +1,7 @@
 from pasat_ui import *
+from PyQt5.QtWidgets import*
 from Pasat import Pasat
+from Round import Round
 import threading
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -29,16 +31,48 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_18.clicked.connect(self.button18)
         self.pushButton_19.clicked.connect(self.button19)
         self.pushButton_20.clicked.connect(self.button20)
+        self.spinBoxRounds.valueChanged.connect(self.roundsValueChange)
+
 
         #Pasat test
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
 
     def __start(self):
+        rounds = []
+        for i in range(self.spinBoxRounds.value()):
+            sums = int(self.tableDatos.item(i, 0).text())
+            seconds = int(self.tableDatos.item(i, 1).text())
+            r = Round(sums=sums, seconds=seconds)
+            rounds.append(r)
+
+        self.__pasat.rounds = rounds
         x = threading.Thread(target=self.__pasat.start)
         x.start()
         
     def __del__(self):
         pass
+
+    def roundsValueChange(self):
+        #Se dan el numero de filas solicitadas
+        self.tableDatos.setRowCount(self.spinBoxRounds.value())
+        #Se agregan los nombres a las filas
+        rowsNames = []
+        for i in range(self.spinBoxRounds.value()):
+            rowsNames.append('Round ' + str(i + 1))
+
+        self.tableDatos.setVerticalHeaderLabels(rowsNames)
+        self.rellenarTabla()
+
+    def rellenarTabla(self):
+        for i in range(self.spinBoxRounds.value()):#Rows
+            # for j in range(self.spinBoxNumeroClases.value() * self.spinBoxDimensionPatron.value()):#Coulumns
+            for j in range(2):#Coulumns
+            
+                item = self.tableDatos.takeItem(i, j)
+                if item is None:  
+                    self.tableDatos.setItem(i, j, QTableWidgetItem(''))
+                else: 
+                    self.tableDatos.setItem(i, j, item)
 
 
     def button1(self):
