@@ -46,6 +46,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             rounds.append(r)
 
         self.__pasat.rounds = rounds
+        self.__pasat.visual = self.checkBox_visual.isChecked()
+        self.__pasat.audio = self.checkBox_auditivo.isChecked()
+
         x = threading.Thread(target=self.__pasat.start)
         x.start()
         

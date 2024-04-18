@@ -2,6 +2,7 @@ from Counter import Counter
 import random 
 from Round import Round
 import time
+from pygame import mixer  # Load the popular external library
 
 
 class Pasat:
@@ -11,8 +12,12 @@ class Pasat:
         self.__label_operation = label_operation
         self.__label_wrong = label_wrong
         self.__TIMES = 10
+        self.audio = False
+        self.visual = True
         self.userNumber = -1
         self.rounds = [Round(sums=10, seconds=3)]
+        mixer.init()
+
 
 
     def start(self, testing=False):
@@ -31,7 +36,8 @@ class Pasat:
             for _ in range(round.sums):
                 number1 = self.getRandomNumber()
                 self.userNumber = -1
-                self.__label_operation.setText('{}'.format(number1))
+                self.displayNumber(number1)
+                self.playNumber(number1)
                 self.__timer()
                 while self.__timer.status:
                     # print('Waiting...')
@@ -57,6 +63,17 @@ class Pasat:
 
     def getRandomNumber(self):
         return random.randint(1,10) 
+    
+    def displayNumber(self, number):
+        if self.visual:
+            self.__label_operation.setText('{}'.format(number))
+
+    def playNumber(self, number):
+        if self.audio:
+            mixer.music.load("audios/{}.mp3".format(number))
+            mixer.music.play()
+        # p = vlc.MediaPlayer("/audios/{}.mp3".format(number))
+        # p.play()
 
 
 

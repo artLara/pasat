@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -127,7 +127,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Don't worry... be hapy...</string>
+       <string>Don't worry... be happy...</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1089,6 +1089,9 @@
              <widget class="QCheckBox" name="checkBox_auditivo">
               <property name="text">
                <string>Auditivo</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>

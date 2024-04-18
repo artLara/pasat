@@ -399,6 +399,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents_5)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.checkBox_auditivo = QtWidgets.QCheckBox(self.scrollAreaWidgetContents_5)
+        self.checkBox_auditivo.setChecked(True)
         self.checkBox_auditivo.setObjectName("checkBox_auditivo")
         self.horizontalLayout_2.addWidget(self.checkBox_auditivo)
         self.checkBox_visual = QtWidgets.QCheckBox(self.scrollAreaWidgetContents_5)
@@ -419,7 +420,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         self.comboBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -432,7 +433,7 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(0, _translate("MainWindow", "Femenino"))
         self.comboBox.setItemText(1, _translate("MainWindow", "Masculino"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Información"))
-        self.label_operation_3.setText(_translate("MainWindow", "Don\'t worry... be hapy..."))
+        self.label_operation_3.setText(_translate("MainWindow", "Don\'t worry... be happy..."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Relax compa"))
         self.label_wrong.setText(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.pushButton_3.setText(_translate("MainWindow", "3"))
