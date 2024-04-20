@@ -5,3 +5,4 @@ conda activate pasat-pyqt5
 conda install qt -y
 conda install pyqt -y
 pip install pygame
+pip install opencv-python-headless

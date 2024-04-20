@@ -3,6 +3,8 @@ from PyQt5.QtWidgets import*
 from Pasat import Pasat
 from Round import Round
 import threading
+from multiprocessing import Process, Queue
+import sys
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -11,6 +13,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #Event connection
         self.pushButton_start.clicked.connect(self.__start)
+        self.pushButton_stop.clicked.connect(self.__stop)
         self.pushButton_1.clicked.connect(self.button1)
         self.pushButton_2.clicked.connect(self.button2)
         self.pushButton_3.clicked.connect(self.button3)
@@ -32,28 +35,56 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_19.clicked.connect(self.button19)
         self.pushButton_20.clicked.connect(self.button20)
         self.spinBoxRounds.valueChanged.connect(self.roundsValueChange)
-
+        self.spinBoxRounds_prueba.valueChanged.connect(self.roundsValueChange_testing)
 
         #Pasat test
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
+        self.__pasat_thread = None
 
     def __start(self):
         rounds = []
-        for i in range(self.spinBoxRounds.value()):
-            sums = int(self.tableDatos.item(i, 0).text())
-            seconds = int(self.tableDatos.item(i, 1).text())
-            r = Round(sums=sums, seconds=seconds)
-            rounds.append(r)
+        self.__pasat.testingMode = self.radioButton_prueba.isChecked()
+
+        rounds = self.getData()
+        
 
         self.__pasat.rounds = rounds
         self.__pasat.visual = self.checkBox_visual.isChecked()
         self.__pasat.audio = self.checkBox_auditivo.isChecked()
+        
+        self.__pasat_thread = threading.Thread(target=self.__pasat.start)
+        self.__pasat_thread.start()
+        # q = Queue()
+        # self.__pasat_thread = Process(target=self.__pasat.start)
+        # self.__pasat_thread.start()
+        # # self.__pasat_thread.join()
+        # self.__pasat_thread.run()
 
-        x = threading.Thread(target=self.__pasat.start)
-        x.start()
+
+
+    def __stop(self):
+        self.__pasat.stop = True
+
+    def getData(self):
+        rounds = []
+        if self.radioButton_prueba.isChecked():
+            data = self.tableDatos_prueba
+            numRounds = self.spinBoxRounds_prueba.value()
+        else:
+            data = self.tableDatos
+            numRounds = self.spinBoxRounds.value()
+
+
+        for i in range(numRounds):
+            sums = int(data.item(i, 0).text())
+            seconds = int(data.item(i, 1).text())
+            r = Round(sums=sums, seconds=seconds)
+            rounds.append(r)
+        
+        return rounds
         
     def __del__(self):
-        pass
+        sys.exit()
 
     def roundsValueChange(self):
         #Se dan el numero de filas solicitadas
@@ -76,6 +107,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.tableDatos.setItem(i, j, QTableWidgetItem(''))
                 else: 
                     self.tableDatos.setItem(i, j, item)
+
+    def roundsValueChange_testing(self):
+        #Se dan el numero de filas solicitadas
+        self.tableDatos_prueba.setRowCount(self.spinBoxRounds_prueba.value())
+        #Se agregan los nombres a las filas
+        rowsNames = []
+        for i in range(self.spinBoxRounds_prueba.value()):
+            rowsNames.append('Round ' + str(i + 1))
+
+        self.tableDatos_prueba.setVerticalHeaderLabels(rowsNames)
+        self.rellenarTabla_testing()
+
+    def rellenarTabla_testing(self):
+        for i in range(self.spinBoxRounds_prueba.value()):#Rows
+            # for j in range(self.spinBoxNumeroClases.value() * self.spinBoxDimensionPatron.value()):#Coulumns
+            for j in range(2):#Coulumns            
+                item = self.tableDatos_prueba.takeItem(i, j)
+                if item is None:  
+                    self.tableDatos_prueba.setItem(i, j, QTableWidgetItem(''))
+                else: 
+                    self.tableDatos_prueba.setItem(i, j, item)
 
 
     def button1(self):

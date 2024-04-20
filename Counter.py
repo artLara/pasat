@@ -11,7 +11,7 @@ class Counter:
         self.timer_thread.start()
 
     def timeout(self):
-        print("time over")
+        # print("time over")
         self.status = False 
 
     def cancel(self):
