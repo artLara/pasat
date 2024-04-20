@@ -1,6 +1,7 @@
 from Counter import Counter
 from InfoSaver import InfoSaver
 from VideoRecorder import VideoRecorder
+from AudioRecorder import AudioRecorder
 import random 
 from Round import Round
 import time
@@ -15,6 +16,7 @@ class Pasat:
         self.__timer = Counter()
         self.__infoSaver = InfoSaver()
         self.__videoRecorder = VideoRecorder()
+        self.__audioRecorder = AudioRecorder()
         self.__label_operation = label_operation
         self.__label_wrong = label_wrong
         self.__TIMES = 10
@@ -48,6 +50,9 @@ class Pasat:
             # self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start, kwargs={'currentFrame':self.__currentFrame})
             self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start)
             self.__pasat_thread.start()
+            self.__audioRecorder = AudioRecorder()
+            self.__pasat_thread_audio = threading.Thread(target=self.__audioRecorder.start)
+            self.__pasat_thread_audio.start()
 
         for indx, round in enumerate(self.rounds):
             if self.__runRound(round):
@@ -58,10 +63,9 @@ class Pasat:
             self.__label_wrong.setText("Fin del round " + str(indx+1))
             time.sleep(2)
 
-        self.__label_wrong.setText("Prueba finalizada")
-        self.__label_operation.setText('')
-        self.__videoRecorder.stop()
+        self.__stop()
         self.__videoRecorder.save(self.__path)
+        self.__audioRecorder.save(self.__path)
         self.__infoSaver.save(self.__path)
 
 
@@ -114,6 +118,7 @@ class Pasat:
                 
     def __stop(self):
         self.__videoRecorder.stop()
+        self.__audioRecorder.stop()
         self.__label_wrong.setText("Prueba finalizada")
         self.__label_operation.setText('')
     

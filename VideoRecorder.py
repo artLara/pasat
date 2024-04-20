@@ -22,7 +22,6 @@ class VideoRecorder:
     def stop(self):
         self.stopRecording = True
 
-
     def getCurrentFrame(self):
         return self.__currentFrame
 

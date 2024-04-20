@@ -6,3 +6,5 @@ conda install qt -y
 conda install pyqt -y
 pip install pygame
 pip install opencv-python-headless
+sudo apt-get install -y build-essential checkinstall 
+pip install pyaudio
