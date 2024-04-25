@@ -79,6 +79,8 @@ class Pasat:
         self.__timer.seconds = round.seconds
         self.__label_wrong.setText("")
         oldNumber = 0
+        self.playNumber(0)
+        time.sleep(round.seconds)
         for _ in range(round.sums):
             oldNumber = self.__runSums(oldNumber)
             if oldNumber == -1:
