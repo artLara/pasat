@@ -40,13 +40,13 @@ class Pasat:
 
     def start(self, testing=False):
         self.stop = False
-        self.__initDirSave()
-        self.__infoSaver.restart()
         self.__label_wrong.setText("")
-        self.__infoSaver = InfoSaver()
         if self.testingMode:
             #Start video recording
             self.__currentFrame = 0
+            self.__initDirSave()
+            self.__infoSaver.restart()
+            self.__infoSaver = InfoSaver()
             # self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start, kwargs={'currentFrame':self.__currentFrame})
             self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start)
             self.__pasat_thread.start()
@@ -64,9 +64,10 @@ class Pasat:
             time.sleep(2)
 
         self.__stop()
-        self.__videoRecorder.save(self.__path)
-        self.__audioRecorder.save(self.__path)
-        self.__infoSaver.save(self.__path)
+        if self.testingMode:
+            self.__videoRecorder.save(self.__path)
+            self.__audioRecorder.save(self.__path)
+            self.__infoSaver.save(self.__path)
 
 
 
