@@ -3,6 +3,7 @@ from persistencia.InfoSaver import InfoSaver
 from persistencia.Round import Round
 from recorder.VideoRecorder import VideoRecorder
 from recorder.AudioRecorder import AudioRecorder
+from stress_test.StressTest import StressTest
 import random 
 import time
 import threading
@@ -10,8 +11,9 @@ from pygame import mixer  # Load the popular external library
 import datetime
 import os
 
-class Pasat:
+class Pasat(StressTest):
     def __init__(self, label_operation, label_wrong):
+        super().__init__()
         self.__seconds = 3
         self.__timer = Counter()
         self.__infoSaver = InfoSaver()
@@ -20,12 +22,8 @@ class Pasat:
         self.__label_operation = label_operation
         self.__label_wrong = label_wrong
         self.__TIMES = 10
-        self.audio = False
-        self.visual = True
+
         self.userNumber = -1
-        self.rounds = [Round(sums=10, seconds=3)]
-        self.testingMode = False #This refers a PASAT test
-        self.stop = False
         self.__currentFrame = 0
         self.__path =  ''
 
@@ -37,11 +35,13 @@ class Pasat:
         if not os.path.exists(self.__path): 
             os.makedirs(self.__path)
 
+    def stop(self):
+        self.__stopFlag = True
 
     def start(self, testing=False):
-        self.stop = False
+        self.__stopFlag = False
         self.__label_wrong.setText("")
-        if self.testingMode:
+        if self.isTestingMode():
             #Start video recording
             self.__currentFrame = 0
             self.__initDirSave()
@@ -54,7 +54,7 @@ class Pasat:
             self.__pasat_thread_audio = threading.Thread(target=self.__audioRecorder.start)
             self.__pasat_thread_audio.start()
 
-        for indx, round in enumerate(self.rounds):
+        for indx, round in enumerate(self.getRounds()):
             if self.__runRound(round):
                 return 
             
@@ -63,8 +63,8 @@ class Pasat:
             self.__label_wrong.setText("Fin del round " + str(indx+1))
             time.sleep(1)
 
-        self.__stop()
-        if self.testingMode:
+        self.__finishTest()
+        if self.isTestingMode():
             self.__videoRecorder.save(self.__path)
             self.__audioRecorder.save(self.__path)
             self.__infoSaver.save(self.__path)
@@ -72,8 +72,8 @@ class Pasat:
 
 
     def __runRound(self, round):
-        if self.stop:
-            self.__stop()
+        if self.__stopFlag:
+            self.__finishTest()
             return True
         
         self.__timer.seconds = round.seconds
@@ -87,8 +87,8 @@ class Pasat:
                 return True
 
     def __runSums(self, oldNumber):
-        if self.stop:
-            self.__stop()
+        if self.__stopFlag:
+            self.__finishTest()
             return -1
         
         number1 = self.getRandomNumber()
@@ -97,8 +97,8 @@ class Pasat:
         self.playNumber(number1)
         self.__timer()
         while self.__timer.status:
-            if self.stop:
-                self.__stop()
+            if self.__stopFlag:
+                self.__finishTest()
                 return -1
             
             if self.userNumber != 0:
@@ -119,7 +119,7 @@ class Pasat:
         return number1
 
                 
-    def __stop(self):
+    def __finishTest(self):
         self.__videoRecorder.stop()
         self.__audioRecorder.stop()
         self.__label_wrong.setText("Prueba finalizada")
@@ -129,11 +129,11 @@ class Pasat:
         return random.randint(1,10) 
     
     def displayNumber(self, number):
-        if self.visual:
+        if self.isVisual:
             self.__label_operation.setText('{}'.format(number))
 
     def playNumber(self, number):
-        if self.audio:
+        if self.isAudio():
             mixer.music.load("media/audios/{}.mp3".format(number))
             mixer.music.play()
             while mixer.music.get_busy():  # wait for music to finish playing

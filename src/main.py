@@ -13,7 +13,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #Event connection
         self.pushButton_start.clicked.connect(self.__start)
+        self.pushButton_start_nback.clicked.connect(self.__start)
+
         self.pushButton_stop.clicked.connect(self.__stop)
+        self.pushButton_stop_nback.clicked.connect(self.__stop)
+
         self.pushButton_1.clicked.connect(self.button1)
         self.pushButton_2.clicked.connect(self.button2)
         self.pushButton_3.clicked.connect(self.button3)
@@ -39,31 +43,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #Pasat test
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
-        self.__pasat_thread = None
+        # self.__nback = NBack(self.label_operation, self.label_wrong)
+        self.__stress_thread = None
 
     def __start(self):
-        rounds = []
-        self.__pasat.testingMode = self.radioButton_prueba.isChecked()
+        currentTest = None
+        if self.tabWidget.currentIndex() == 2:
+            currentTest = self.__pasat
+            print('Pasat!!!!')
 
-        rounds = self.getData()
-        
+        if self.tabWidget.currentIndex() == 3:
+            currentTest = None
+            print('Nback!!!!')
+            return
 
-        self.__pasat.rounds = rounds
-        self.__pasat.visual = self.checkBox_visual.isChecked()
-        self.__pasat.audio = self.checkBox_auditivo.isChecked()
+
+        currentTest.setTestingMode(self.radioButton_prueba.isChecked())
+        currentTest.setRounds(self.getData())
+        currentTest.setVisual(self.checkBox_visual.isChecked()) 
+        currentTest.setAudio(self.checkBox_auditivo.isChecked())
         
-        self.__pasat_thread = threading.Thread(target=self.__pasat.start)
-        self.__pasat_thread.start()
+        self.__stress_thread = threading.Thread(target=currentTest.start)
+        self.__stress_thread.start()
         # q = Queue()
-        # self.__pasat_thread = Process(target=self.__pasat.start)
-        # self.__pasat_thread.start()
-        # # self.__pasat_thread.join()
-        # self.__pasat_thread.run()
+        # self.__stress_thread = Process(target=self.__pasat.start)
+        # self.__stress_thread.start()
+        # # self.__stress_thread.join()
+        # self.__stress_thread.run()
 
 
 
     def __stop(self):
-        self.__pasat.stop = True
+        self.__pasat.stop()
 
     def getData(self):
         rounds = []
