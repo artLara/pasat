@@ -8,3 +8,4 @@ pip install pygame
 pip install opencv-python-headless
 sudo apt-get install -y build-essential checkinstall 
 pip install pyaudio
+#pyuic5 -x pasat.ui -o pasat_ui.py

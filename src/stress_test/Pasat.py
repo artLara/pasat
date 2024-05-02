@@ -1,9 +1,9 @@
-from Counter import Counter
-from InfoSaver import InfoSaver
-from VideoRecorder import VideoRecorder
-from AudioRecorder import AudioRecorder
+from persistencia.Counter import Counter
+from persistencia.InfoSaver import InfoSaver
+from persistencia.Round import Round
+from recorder.VideoRecorder import VideoRecorder
+from recorder.AudioRecorder import AudioRecorder
 import random 
-from Round import Round
 import time
 import threading
 from pygame import mixer  # Load the popular external library
@@ -33,7 +33,7 @@ class Pasat:
 
     def __initDirSave(self):
         nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-        self.__path = 'information/' + nameDir + '/'
+        self.__path = '../usr/pasat_information/' + nameDir + '/'
         if not os.path.exists(self.__path): 
             os.makedirs(self.__path)
 
@@ -58,10 +58,10 @@ class Pasat:
             if self.__runRound(round):
                 return 
             
-            time.sleep(1)
+            time.sleep(2)
             self.__label_operation.setText('')
             self.__label_wrong.setText("Fin del round " + str(indx+1))
-            time.sleep(2)
+            time.sleep(1)
 
         self.__stop()
         if self.testingMode:
@@ -134,7 +134,7 @@ class Pasat:
 
     def playNumber(self, number):
         if self.audio:
-            mixer.music.load("audios/{}.mp3".format(number))
+            mixer.music.load("media/audios/{}.mp3".format(number))
             mixer.music.play()
             while mixer.music.get_busy():  # wait for music to finish playing
                 time.sleep(1)

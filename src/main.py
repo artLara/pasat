@@ -1,7 +1,7 @@
-from pasat_ui import *
+from guis.pasat_ui import *
 from PyQt5.QtWidgets import*
-from Pasat import Pasat
-from Round import Round
+from stress_test.Pasat import Pasat
+from persistencia.Round import Round
 import threading
 from multiprocessing import Process, Queue
 import sys
