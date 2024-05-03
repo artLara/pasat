@@ -1,13 +1,17 @@
 from persistencia.Round import Round
-
+from recorder.VideoRecorder import VideoRecorder
+from recorder.AudioRecorder import AudioRecorder
+import threading
 class StressTest:
-    def __ini__(self):
+    def __init__(self):
         self.__rounds = [Round(sums=10, seconds=3)]
         self.__stopFlag = False
         self.__audio = False
         self.__visual = True
         self.__testingMode = False #This refers a stress test
-
+        self.__videoRecorder = VideoRecorder()
+        self.__audioRecorder = AudioRecorder()
+        self.__path = ''
     
     def start(self):
         pass
@@ -38,3 +42,25 @@ class StressTest:
 
     def setVisual(self, flag):
         self.__visual = flag
+
+    def setPath(self,path):
+        self.__path = path
+
+    def getPath(self):
+        return self.__path
+
+    def startRecording(self):
+        self.__video_thread = threading.Thread(target=self.__videoRecorder.start)
+        self.__video_thread.start()
+        self.__audio_thread = threading.Thread(target=self.__audioRecorder.start)
+        self.__audio_thread.start()   
+
+    def stopRecording(self):
+        self.__videoRecorder.stop()
+        self.__audioRecorder.stop()
+        self.__videoRecorder.save(self.__path)
+        self.__audioRecorder.save(self.__path)
+
+    def getCurrentFrame(self):
+        return self.__videoRecorder.getCurrentFrame()
+    

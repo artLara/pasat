@@ -52,10 +52,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             currentTest = self.__pasat
             print('Pasat!!!!')
 
-        if self.tabWidget.currentIndex() == 3:
+        elif self.tabWidget.currentIndex() == 3:
             currentTest = None
             print('Nback!!!!')
             return
+        
+        else:
+            print('Something is wrong, Ypu try a test in a different tab')
 
 
         currentTest.setTestingMode(self.radioButton_prueba.isChecked())

@@ -5,22 +5,22 @@ class VideoRecorder:
     def __init__(self):
         self.__path = 'video/'
         self.__frames = []
-        self.stopRecording = False
+        self.__stopRecording = False
         self.__currentFrame = 0
         
     def start(self):
         self.__frames = []
         self.__currentFrame = 0
-        self.stopRecording = False
+        self.__stopRecording = False
         vid = cv2.VideoCapture(0)
         success, frame = vid.read()
-        while success and not self.stopRecording: 
+        while success and not self.__stopRecording: 
             self.__frames.append(frame)
             success, frame = vid.read()
             self.__currentFrame += 1
 
     def stop(self):
-        self.stopRecording = True
+        self.__stopRecording = True
 
     def getCurrentFrame(self):
         return self.__currentFrame

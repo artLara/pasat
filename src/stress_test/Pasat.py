@@ -1,8 +1,7 @@
 from persistencia.Counter import Counter
 from persistencia.InfoSaver import InfoSaver
 from persistencia.Round import Round
-from recorder.VideoRecorder import VideoRecorder
-from recorder.AudioRecorder import AudioRecorder
+
 from stress_test.StressTest import StressTest
 import random 
 import time
@@ -14,26 +13,21 @@ import os
 class Pasat(StressTest):
     def __init__(self, label_operation, label_wrong):
         super().__init__()
-        self.__seconds = 3
         self.__timer = Counter()
         self.__infoSaver = InfoSaver()
-        self.__videoRecorder = VideoRecorder()
-        self.__audioRecorder = AudioRecorder()
+        self.__infoDict = {'wrong':[], 'correct':[], 'no response':[]}
         self.__label_operation = label_operation
         self.__label_wrong = label_wrong
-        self.__TIMES = 10
-
         self.userNumber = -1
-        self.__currentFrame = 0
-        self.__path =  ''
 
         mixer.init()
 
     def __initDirSave(self):
         nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-        self.__path = '../usr/pasat_information/' + nameDir + '/'
-        if not os.path.exists(self.__path): 
-            os.makedirs(self.__path)
+        path = '../usr/pasat_information/' + nameDir + '/'
+        self.setPath(path)
+        if not os.path.exists(self.getPath()): 
+            os.makedirs(self.getPath())
 
     def stop(self):
         self.__stopFlag = True
@@ -41,18 +35,14 @@ class Pasat(StressTest):
     def start(self, testing=False):
         self.__stopFlag = False
         self.__label_wrong.setText("")
+        self.__infoSaver.setInformationDict(self.__infoDict)
+        self.__infoSaver.restartTime()
         if self.isTestingMode():
             #Start video recording
             self.__currentFrame = 0
             self.__initDirSave()
-            self.__infoSaver.restart()
-            self.__infoSaver = InfoSaver()
             # self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start, kwargs={'currentFrame':self.__currentFrame})
-            self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start)
-            self.__pasat_thread.start()
-            self.__audioRecorder = AudioRecorder()
-            self.__pasat_thread_audio = threading.Thread(target=self.__audioRecorder.start)
-            self.__pasat_thread_audio.start()
+            self.startRecording()
 
         for indx, round in enumerate(self.getRounds()):
             if self.__runRound(round):
@@ -65,9 +55,8 @@ class Pasat(StressTest):
 
         self.__finishTest()
         if self.isTestingMode():
-            self.__videoRecorder.save(self.__path)
-            self.__audioRecorder.save(self.__path)
-            self.__infoSaver.save(self.__path)
+            self.stopRecording()
+            self.__infoSaver.save(self.getPath())
 
 
 
@@ -79,7 +68,7 @@ class Pasat(StressTest):
         self.__timer.seconds = round.seconds
         self.__label_wrong.setText("")
         oldNumber = 0
-        self.playNumber(0)
+        self.__playNumber(0)
         time.sleep(round.seconds)
         for _ in range(round.sums):
             oldNumber = self.__runSums(oldNumber)
@@ -91,10 +80,10 @@ class Pasat(StressTest):
             self.__finishTest()
             return -1
         
-        number1 = self.getRandomNumber()
+        number1 = self.__getRandomNumber()
         self.userNumber = 0
-        self.displayNumber(number1)
-        self.playNumber(number1)
+        self.__displayNumber(number1)
+        self.__playNumber(number1)
         self.__timer()
         while self.__timer.status:
             if self.__stopFlag:
@@ -104,35 +93,34 @@ class Pasat(StressTest):
             if self.userNumber != 0:
                 if (number1+oldNumber) != self.userNumber:
                     self.__label_wrong.setText('Wrong!!!')
-                    self.__infoSaver.saveAnswer('wrong', self.__videoRecorder.getCurrentFrame())
+                    self.__infoSaver.saveAnswer('wrong', self.getCurrentFrame())
                     break
                 self.__label_wrong.setText('Correct!!!')
-                self.__infoSaver.saveAnswer('correct', self.__videoRecorder.getCurrentFrame())
+                self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
 
                 break
 
         self.__timer.cancel()
         if self.userNumber == 0:
             self.__label_wrong.setText("Sin respuesta")
-            self.__infoSaver.saveAnswer('no response', self.__videoRecorder.getCurrentFrame())
+            self.__infoSaver.saveAnswer('no response', self.getCurrentFrame())
 
         return number1
 
                 
     def __finishTest(self):
-        self.__videoRecorder.stop()
-        self.__audioRecorder.stop()
+        self.stopRecording()
         self.__label_wrong.setText("Prueba finalizada")
         self.__label_operation.setText('')
     
-    def getRandomNumber(self):
+    def __getRandomNumber(self):
         return random.randint(1,10) 
     
-    def displayNumber(self, number):
-        if self.isVisual:
+    def __displayNumber(self, number):
+        if self.isVisual():
             self.__label_operation.setText('{}'.format(number))
 
-    def playNumber(self, number):
+    def __playNumber(self, number):
         if self.isAudio():
             mixer.music.load("media/audios/{}.mp3".format(number))
             mixer.music.play()
