@@ -1,6 +1,7 @@
 from guis.pasat_ui import *
 from PyQt5.QtWidgets import*
 from stress_test.Pasat import Pasat
+from stress_test.NBack import NBack
 from persistencia.Round import Round
 import threading
 from multiprocessing import Process, Queue
@@ -38,12 +39,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_18.clicked.connect(self.button18)
         self.pushButton_19.clicked.connect(self.button19)
         self.pushButton_20.clicked.connect(self.button20)
-        self.spinBoxRounds.valueChanged.connect(self.roundsValueChange)
-        self.spinBoxRounds_prueba.valueChanged.connect(self.roundsValueChange_testing)
+        self.spinBoxRounds.valueChanged.connect(self.__dataPasatTrainChangeListening)
+        self.spinBoxRounds_prueba.valueChanged.connect(self.__dataPasatTestChangeListening)
+        self.spinBoxRounds_nback_training.valueChanged.connect(self.__dataNBackTrainChangeListening)
+        self.spinBoxRounds_nback_testing.valueChanged.connect(self.__dataNBackTestChangeListening)
 
         #Pasat test
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
-        # self.__nback = NBack(self.label_operation, self.label_wrong)
+        self.__nback = NBack(self.label_matrix, self.label_letter, self.label_nback_title)
         self.__stress_thread = None
 
     def __start(self):
@@ -53,9 +56,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print('Pasat!!!!')
 
         elif self.tabWidget.currentIndex() == 3:
-            currentTest = None
+            currentTest = self.__nback
             print('Nback!!!!')
-            return
         
         else:
             print('Something is wrong, Ypu try a test in a different tab')
@@ -79,20 +81,46 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __stop(self):
         self.__pasat.stop()
 
-    def getData(self):
-        rounds = []
-        if self.radioButton_prueba.isChecked():
+    def __getDataSource(self):
+        data = self.tableDatos_prueba
+        numRounds = self.spinBoxRounds_prueba.value()
+
+        if self.tabWidget.currentIndex() == 2 and self.radioButton_prueba.isChecked():
             data = self.tableDatos_prueba
             numRounds = self.spinBoxRounds_prueba.value()
-        else:
+
+        elif self.tabWidget.currentIndex() == 2 and self.radioButton_entrenamiento.isChecked():
             data = self.tableDatos
             numRounds = self.spinBoxRounds.value()
 
+        elif self.tabWidget.currentIndex() == 3 and self.radioButton_prueba_nback.isChecked():
+            data = self.tableDatos_nback_testing
+            numRounds = self.spinBoxRounds_nback_testing.value()    
+
+        elif self.tabWidget.currentIndex() == 3 and self.radioButton_entrenamiento_nback.isChecked():
+            data = self.tableDatos_nback_training
+            numRounds = self.spinBoxRounds_nback_training.value()
+        else:
+            print('Something is wrong, Ypu try a test in a different tab')
+
+        return data, numRounds
+    
+    def getFeaturesFromDataTable(self, data, index):
+        sums = int(data.item(index, 0).text())
+        seconds = int(data.item(index, 1).text())
+        try:
+            n = int(data.item(index, 2).text())
+        except:
+            n = 1
+        return sums, seconds, n
+    
+    def getData(self):
+        rounds = []
+        data, numRounds = self.__getDataSource()
 
         for i in range(numRounds):
-            sums = int(data.item(i, 0).text())
-            seconds = int(data.item(i, 1).text())
-            r = Round(sums=sums, seconds=seconds)
+            sums, seconds, n = self.getFeaturesFromDataTable(data, i)
+            r = Round(sums=sums, seconds=seconds, n=n)
             rounds.append(r)
         
         return rounds
@@ -100,48 +128,81 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __del__(self):
         sys.exit()
 
-    def roundsValueChange(self):
-        #Se dan el numero de filas solicitadas
-        self.tableDatos.setRowCount(self.spinBoxRounds.value())
-        #Se agregan los nombres a las filas
-        rowsNames = []
-        for i in range(self.spinBoxRounds.value()):
-            rowsNames.append('Round ' + str(i + 1))
+    # def roundsValueChange(self):
+    #     #Se dan el numero de filas solicitadas
+    #     self.tableDatos.setRowCount(self.spinBoxRounds.value())
+    #     #Se agregan los nombres a las filas
+    #     rowsNames = []
+    #     for i in range(self.spinBoxRounds.value()):
+    #         rowsNames.append('Round ' + str(i + 1))
 
-        self.tableDatos.setVerticalHeaderLabels(rowsNames)
-        self.rellenarTabla()
+    #     self.tableDatos.setVerticalHeaderLabels(rowsNames)
+    #     self.rellenarTabla()
 
-    def rellenarTabla(self):
-        for i in range(self.spinBoxRounds.value()):#Rows
-            # for j in range(self.spinBoxNumeroClases.value() * self.spinBoxDimensionPatron.value()):#Coulumns
-            for j in range(2):#Coulumns
+    # def rellenarTabla(self):
+    #     for i in range(self.spinBoxRounds.value()):#Rows
+    #         # for j in range(self.spinBoxNumeroClases.value() * self.spinBoxDimensionPatron.value()):#Coulumns
+    #         for j in range(2):#Coulumns
             
-                item = self.tableDatos.takeItem(i, j)
-                if item is None:  
-                    self.tableDatos.setItem(i, j, QTableWidgetItem(''))
-                else: 
-                    self.tableDatos.setItem(i, j, item)
+    #             item = self.tableDatos.takeItem(i, j)
+    #             if item is None:  
+    #                 self.tableDatos.setItem(i, j, QTableWidgetItem(''))
+    #             else: 
+    #                 self.tableDatos.setItem(i, j, item)
 
-    def roundsValueChange_testing(self):
+    # def roundsValueChange_testing(self):
+    #     #Se dan el numero de filas solicitadas
+    #     self.tableDatos_prueba.setRowCount(self.spinBoxRounds_prueba.value())
+    #     #Se agregan los nombres a las filas
+    #     rowsNames = []
+    #     for i in range(self.spinBoxRounds_prueba.value()):
+    #         rowsNames.append('Round ' + str(i + 1))
+
+    #     self.tableDatos_prueba.setVerticalHeaderLabels(rowsNames)
+    #     self.rellenarTabla_testing()
+
+    # def rellenarTabla_testing(self):
+    #     for i in range(self.spinBoxRounds_prueba.value()):#Rows
+    #         # for j in range(self.spinBoxNumeroClases.value() * self.spinBoxDimensionPatron.value()):#Coulumns
+    #         for j in range(2):#Coulumns            
+    #             item = self.tableDatos_prueba.takeItem(i, j)
+    #             if item is None:  
+    #                 self.tableDatos_prueba.setItem(i, j, QTableWidgetItem(''))
+    #             else: 
+    #                 self.tableDatos_prueba.setItem(i, j, item)
+
+    def __roundsValueChange(self, tableData, spin):
         #Se dan el numero de filas solicitadas
-        self.tableDatos_prueba.setRowCount(self.spinBoxRounds_prueba.value())
+        tableData.setRowCount(spin.value())
         #Se agregan los nombres a las filas
         rowsNames = []
-        for i in range(self.spinBoxRounds_prueba.value()):
+        for i in range(spin.value()):
             rowsNames.append('Round ' + str(i + 1))
 
-        self.tableDatos_prueba.setVerticalHeaderLabels(rowsNames)
-        self.rellenarTabla_testing()
+        tableData.setVerticalHeaderLabels(rowsNames)
+        self.__rellenarTabla(tableData, spin)
 
-    def rellenarTabla_testing(self):
-        for i in range(self.spinBoxRounds_prueba.value()):#Rows
-            # for j in range(self.spinBoxNumeroClases.value() * self.spinBoxDimensionPatron.value()):#Coulumns
-            for j in range(2):#Coulumns            
-                item = self.tableDatos_prueba.takeItem(i, j)
+    def __rellenarTabla(self, tableData, spin):
+        for i in range(spin.value()):#Rows
+            for j in range(2):#Coulumns
+                item = tableData.takeItem(i, j)
                 if item is None:  
-                    self.tableDatos_prueba.setItem(i, j, QTableWidgetItem(''))
+                    tableData.setItem(i, j, QTableWidgetItem(''))
                 else: 
-                    self.tableDatos_prueba.setItem(i, j, item)
+                    tableData.setItem(i, j, item)
+
+    def __dataPasatTrainChangeListening(self):
+        self.__roundsValueChange(self.tableDatos, self.spinBoxRounds)
+
+    def __dataPasatTestChangeListening(self):
+        self.__roundsValueChange(self.tableDatos_prueba, self.spinBoxRounds_prueba)
+
+    def __dataNBackTrainChangeListening(self):
+        self.__roundsValueChange(self.tableDatos_nback_training, self.spinBoxRounds_nback_training)
+
+    def __dataNBackTestChangeListening(self):
+        self.__roundsValueChange(self.tableDatos_nback_testing, self.spinBoxRounds_nback_testing)
+
 
 
     def button1(self):
