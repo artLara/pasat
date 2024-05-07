@@ -52,6 +52,7 @@ class StressTest:
     def startRecording(self):
         self.__video_thread = threading.Thread(target=self.__videoRecorder.start)
         self.__video_thread.start()
+        self.__audioRecorder = AudioRecorder()
         self.__audio_thread = threading.Thread(target=self.__audioRecorder.start)
         self.__audio_thread.start()   
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1122</width>
-    <height>737</height>
+    <width>1102</width>
+    <height>735</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,12 +19,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1101</width>
+      <width>1091</width>
       <height>681</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -1271,7 +1271,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_messagesLetter">
+     <widget class="QLabel" name="label_message_letter">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -1507,9 +1507,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>170</x>
         <y>40</y>
-        <width>481</width>
+        <width>801</width>
         <height>91</height>
        </rect>
       </property>
@@ -1610,7 +1610,7 @@
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N-Backtest&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N-Back&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1965,7 +1965,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>391</width>
+        <width>491</width>
         <height>631</height>
        </rect>
       </property>
@@ -1977,7 +1977,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>389</width>
+         <width>489</width>
          <height>629</height>
         </rect>
        </property>
@@ -2026,7 +2026,7 @@
            <number>3</number>
           </property>
           <property name="columnCount">
-           <number>3</number>
+           <number>4</number>
           </property>
           <row>
            <property name="text">
@@ -2050,7 +2050,7 @@
           </column>
           <column>
            <property name="text">
-            <string>Segundos</string>
+            <string>Visibilidad</string>
            </property>
           </column>
           <column>
@@ -2058,9 +2058,14 @@
             <string>N</string>
            </property>
           </column>
+          <column>
+           <property name="text">
+            <string>Transición</string>
+           </property>
+          </column>
           <item row="0" column="0">
            <property name="text">
-            <string>2</string>
+            <string>5</string>
            </property>
           </item>
           <item row="0" column="1">
@@ -2073,34 +2078,49 @@
             <string>1</string>
            </property>
           </item>
+          <item row="0" column="3">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
           <item row="1" column="0">
            <property name="text">
-            <string>2</string>
+            <string>5</string>
            </property>
           </item>
           <item row="1" column="1">
            <property name="text">
-            <string>3</string>
+            <string>2</string>
            </property>
           </item>
           <item row="1" column="2">
            <property name="text">
-            <string>2</string>
+            <string>1</string>
+           </property>
+          </item>
+          <item row="1" column="3">
+           <property name="text">
+            <string>0</string>
            </property>
           </item>
           <item row="2" column="0">
            <property name="text">
-            <string>2</string>
+            <string>5</string>
            </property>
           </item>
           <item row="2" column="1">
            <property name="text">
-            <string>4</string>
+            <string>2</string>
            </property>
           </item>
           <item row="2" column="2">
            <property name="text">
-            <string>3</string>
+            <string>1</string>
+           </property>
+          </item>
+          <item row="2" column="3">
+           <property name="text">
+            <string>0</string>
            </property>
           </item>
          </widget>
@@ -2111,9 +2131,9 @@
      <widget class="QScrollArea" name="scrollArea_7">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>490</x>
         <y>0</y>
-        <width>391</width>
+        <width>481</width>
         <height>631</height>
        </rect>
       </property>
@@ -2125,7 +2145,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>389</width>
+         <width>479</width>
          <height>629</height>
         </rect>
        </property>
@@ -2174,7 +2194,7 @@
            <number>3</number>
           </property>
           <property name="columnCount">
-           <number>3</number>
+           <number>4</number>
           </property>
           <row>
            <property name="text">
@@ -2206,9 +2226,14 @@
             <string>N</string>
            </property>
           </column>
+          <column>
+           <property name="text">
+            <string>Transición</string>
+           </property>
+          </column>
           <item row="0" column="0">
            <property name="text">
-            <string>2</string>
+            <string>5</string>
            </property>
           </item>
           <item row="0" column="1">
@@ -2221,9 +2246,14 @@
             <string>1</string>
            </property>
           </item>
+          <item row="0" column="3">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
           <item row="1" column="0">
            <property name="text">
-            <string>2</string>
+            <string>5</string>
            </property>
           </item>
           <item row="1" column="1">
@@ -2236,9 +2266,14 @@
             <string>1</string>
            </property>
           </item>
+          <item row="1" column="3">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
           <item row="2" column="0">
            <property name="text">
-            <string>2</string>
+            <string>5</string>
            </property>
           </item>
           <item row="2" column="1">
@@ -2248,7 +2283,12 @@
           </item>
           <item row="2" column="2">
            <property name="text">
-            <string>2</string>
+            <string>1</string>
+           </property>
+          </item>
+          <item row="2" column="3">
+           <property name="text">
+            <string>0</string>
            </property>
           </item>
          </widget>
@@ -2259,9 +2299,9 @@
      <widget class="QScrollArea" name="scrollArea_8">
       <property name="geometry">
        <rect>
-        <x>780</x>
+        <x>970</x>
         <y>0</y>
-        <width>226</width>
+        <width>121</width>
         <height>111</height>
        </rect>
       </property>
@@ -2273,7 +2313,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>224</width>
+         <width>119</width>
          <height>109</height>
         </rect>
        </property>
@@ -2288,7 +2328,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Configuración de estimulos</string>
+           <string>Letras</string>
           </property>
          </widget>
         </item>
@@ -2302,15 +2342,15 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>204</width>
+             <width>99</width>
              <height>68</height>
             </rect>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QCheckBox" name="checkBox_auditivo_nback">
+             <widget class="QCheckBox" name="checkBox_visual_nback">
               <property name="text">
-               <string>Auditivo</string>
+               <string>Visual</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -2318,9 +2358,9 @@
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_visual_nback">
+             <widget class="QCheckBox" name="checkBox_auditivo_nback">
               <property name="text">
-               <string>Visual</string>
+               <string>Auditivo</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -2342,7 +2382,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1122</width>
+     <width>1102</width>
      <height>20</height>
     </rect>
    </property>

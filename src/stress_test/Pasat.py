@@ -56,6 +56,8 @@ class Pasat(StressTest):
         if self.isTestingMode():
             self.stopRecording()
             self.__infoSaver.save(self.getPath())
+            self.__infoDict = {'wrong':[], 'correct':[], 'no response':[]}
+
 
 
 
@@ -121,7 +123,7 @@ class Pasat(StressTest):
 
     def __playNumber(self, number):
         if self.isAudio():
-            mixer.music.load("media/audios/{}.mp3".format(number))
+            mixer.music.load("media/audios/numbers/{}.mp3".format(number))
             mixer.music.play()
             while mixer.music.get_busy():  # wait for music to finish playing
                 time.sleep(1)

@@ -1,7 +1,7 @@
 from guis.pasat_ui import *
 from PyQt5.QtWidgets import*
 from stress_test.Pasat import Pasat
-from stress_test.NBack import NBack
+from stress_test.nback.NBack import NBack
 from persistencia.Round import Round
 import threading
 from multiprocessing import Process, Queue
@@ -46,40 +46,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #Pasat test
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
-        self.__nback = NBack(self.label_matrix, self.label_letter, self.label_nback_title)
+        self.__nback = NBack(self.label_matrix, self.label_letter, self.label_nback_title, self.label_message_matrix, self.label_message_letter)
         self.__stress_thread = None
 
     def __start(self):
         currentTest = None
         if self.tabWidget.currentIndex() == 2:
             currentTest = self.__pasat
-            print('Pasat!!!!')
+            currentTest.setTestingMode(self.radioButton_prueba.isChecked())
+            currentTest.setVisual(self.checkBox_visual.isChecked()) 
+            currentTest.setAudio(self.checkBox_auditivo.isChecked())
 
         elif self.tabWidget.currentIndex() == 3:
             currentTest = self.__nback
-            print('Nback!!!!')
+            currentTest.setTestingMode(self.radioButton_prueba_nback.isChecked())
+            currentTest.setVisual(self.checkBox_visual_nback.isChecked()) 
+            currentTest.setAudio(self.checkBox_auditivo_nback.isChecked())
         
         else:
             print('Something is wrong, Ypu try a test in a different tab')
-
-
-        currentTest.setTestingMode(self.radioButton_prueba.isChecked())
-        currentTest.setRounds(self.getData())
-        currentTest.setVisual(self.checkBox_visual.isChecked()) 
-        currentTest.setAudio(self.checkBox_auditivo.isChecked())
         
+        currentTest.setRounds(self.getData())
         self.__stress_thread = threading.Thread(target=currentTest.start)
         self.__stress_thread.start()
-        # q = Queue()
-        # self.__stress_thread = Process(target=self.__pasat.start)
-        # self.__stress_thread.start()
-        # # self.__stress_thread.join()
-        # self.__stress_thread.run()
-
-
 
     def __stop(self):
         self.__pasat.stop()
+        self.__nback.stop()
 
     def __getDataSource(self):
         data = self.tableDatos_prueba
@@ -110,17 +103,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         seconds = int(data.item(index, 1).text())
         try:
             n = int(data.item(index, 2).text())
+            transition = int(data.item(index, 3).text())
+
         except:
             n = 1
-        return sums, seconds, n
+            transition = 0
+        return sums, seconds, n, transition
     
     def getData(self):
         rounds = []
         data, numRounds = self.__getDataSource()
 
         for i in range(numRounds):
-            sums, seconds, n = self.getFeaturesFromDataTable(data, i)
-            r = Round(sums=sums, seconds=seconds, n=n)
+            sums, seconds, n, transition = self.getFeaturesFromDataTable(data, i)
+            r = Round(sums=sums, seconds=seconds, n=n, transition=transition)
             rounds.append(r)
         
         return rounds
