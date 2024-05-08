@@ -34,7 +34,7 @@ class NBack(StressTest):
 
     def __initDirSave(self):
         nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
-        path = '../usr/nback_information/' + nameDir + '/'
+        path = '../usr/nback_information/' + str(self.getId()) + '/'
         self.setPath(path)
         if not os.path.exists(self.getPath()): 
             os.makedirs(self.getPath())

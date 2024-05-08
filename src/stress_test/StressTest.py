@@ -12,6 +12,8 @@ class StressTest:
         self.__videoRecorder = VideoRecorder()
         self.__audioRecorder = AudioRecorder()
         self.__path = ''
+        self.__id = 0
+
     
     def start(self):
         pass
@@ -48,6 +50,13 @@ class StressTest:
 
     def getPath(self):
         return self.__path
+    
+    def setId(self, id):
+        self.__id = id
+
+    def getId(self):
+        return self.__id
+
 
     def startRecording(self):
         self.__video_thread = threading.Thread(target=self.__videoRecorder.start)

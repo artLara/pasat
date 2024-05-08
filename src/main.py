@@ -6,6 +6,7 @@ from persistencia.Round import Round
 import threading
 from multiprocessing import Process, Queue
 import sys
+import json
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -18,6 +19,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.pushButton_stop.clicked.connect(self.__stop)
         self.pushButton_stop_nback.clicked.connect(self.__stop)
+        self.pushButton_registrar.clicked.connect(self.__loadId)
+        self.pushButton_nback_guardar.clicked.connect(self.__saveFormsNBack)
+        self.pushButton_pasat_guardar.clicked.connect(self.__saveFormsPasat)
 
         self.pushButton_1.clicked.connect(self.button1)
         self.pushButton_2.clicked.connect(self.button2)
@@ -45,9 +49,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.spinBoxRounds_nback_testing.valueChanged.connect(self.__dataNBackTestChangeListening)
 
         #Pasat test
+        self.__id = 0
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
         self.__nback = NBack(self.label_matrix, self.label_letter, self.label_nback_title, self.label_message_matrix, self.label_message_letter)
         self.__stress_thread = None
+
 
     def __start(self):
         currentTest = None
@@ -66,6 +72,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             print('Something is wrong, Ypu try a test in a different tab')
         
+        currentTest.setId(self.__id)
         currentTest.setRounds(self.getData())
         self.__stress_thread = threading.Thread(target=currentTest.start)
         self.__stress_thread.start()
@@ -73,6 +80,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __stop(self):
         self.__pasat.stop()
         self.__nback.stop()
+
+    def __loadId(self):
+        f = open('id.json')
+        data = json.load(f)
+        f.close() 
+        data['id'] += 1
+        self.__id = int(data['id'])
+        f = open('id.json', 'w')
+        json.dump(data, f, indent = 6) 
+        f.close() 
+        print('Current ID: {}'.format(self.__id))
+        self.label_usuario.setText('Usuario: {}'.format(self.__id))
+        self.label_guardado_pasat.setText('')
+        self.label_guardado_nback.setText('')
+
+    def __saveFormsPasat(self):
+        self.label_guardado_pasat.setText('¡Guardado!')
+
+    def __saveFormsNBack(self):
+        self.label_guardado_nback.setText('¡Guardado!')
 
     def __getDataSource(self):
         data = self.tableDatos_prueba
