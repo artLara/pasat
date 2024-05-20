@@ -7,6 +7,7 @@ import threading
 from multiprocessing import Process, Queue
 import sys
 import json
+import os
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -53,6 +54,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__pasat = Pasat(self.label_operation, self.label_wrong)
         self.__nback = NBack(self.label_matrix, self.label_letter, self.label_nback_title, self.label_message_matrix, self.label_message_letter)
         self.__stress_thread = None
+        self.__path = ''
+
+    def __initDirSave(self):
+        self.__path = '../usr/forms/' + str(self.__id) + '/'
+        if not os.path.exists(self.__path): 
+            os.makedirs(self.__path)
 
 
     def __start(self):
@@ -68,6 +75,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             currentTest.setTestingMode(self.radioButton_prueba_nback.isChecked())
             currentTest.setVisual(self.checkBox_visual_nback.isChecked()) 
             currentTest.setAudio(self.checkBox_auditivo_nback.isChecked())
+            currentTest.setShowCorrectFlag(self.checkBox_nback_responseCorrect.isChecked())
+            currentTest.setShowIncorrectFlag(self.checkBox_nback_responseIncorrect.isChecked())
+
+
         
         else:
             print('Something is wrong, Ypu try a test in a different tab')
@@ -95,11 +106,91 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.label_guardado_pasat.setText('')
         self.label_guardado_nback.setText('')
 
+    def __getOptionEstresPasat(self):
+        if self.radioButton_pasat_estresado_nada.isChecked():
+            return 'nada'
+        
+        if self.radioButton_pasat_estresado_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_pasat_estresado_moderado.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_pasat_estresado_muy.isChecked():
+            return 'mucho'
+        
+    def __getOptionDificultadPasat(self):
+        if self.radioButton_pasat_estresado_dif_ninguna.isChecked():
+            return 'nada'
+        
+        if self.radioButton_pasat_estresado_dif_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_pasat_estresado_dif_mod.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_pasat_estresado_dif_mucha.isChecked():
+            return 'mucho'
+        
     def __saveFormsPasat(self):
-        self.label_guardado_pasat.setText('¡Guardado!')
+        self.__initDirSave()
+        info = {}
+        info['estres'] = self.__getOptionEstresPasat()
+        info['dificultad'] = self.__getOptionDificultadPasat()
+        info['q1'] = self.plainTextEdit_pasat_q1.toPlainText()
+        info['q2'] = self.plainTextEdit_pasat_q2.toPlainText()
+        info['q3'] = self.plainTextEdit_pasat_q3.toPlainText()
+        
+        with open(self.__path + "pasat.json", "w") as outfile: 
+            json.dump(info, outfile)
 
+        self.label_guardado_pasat.setText('¡Guardado!')
+        self.plainTextEdit_pasat_q1.clear()
+        self.plainTextEdit_pasat_q2.clear()
+        self.plainTextEdit_pasat_q3.clear()
+
+    def __getOptionEstresNBack(self):
+        if self.radioButton_nback_estresado_nada.isChecked():
+            return 'nada'
+        
+        if self.radioButton_nback_estresado_dif_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_nback_estresado_moderado.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_nback_estresado_muy.isChecked():
+            return 'mucho'
+        
+    def __getOptionDificultadNBack(self):
+        if self.radioButton_nback_estresado_dif_ninguna.isChecked():
+            return 'nada'
+        
+        if self.radioButton_nback_estresado_dif_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_nback_estresado_dif_mod.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_nback_estresado_dif_mucha.isChecked():
+            return 'mucho'
+        
     def __saveFormsNBack(self):
+        self.__initDirSave()
+        info = {}
+        info['estres'] = self.__getOptionEstresNBack()
+        info['dificultad'] = self.__getOptionDificultadNBack()
+        info['q1'] = self.plainTextEdit_nback_q1.toPlainText()
+        info['q2'] = self.plainTextEdit_nback_q2.toPlainText()
+        info['q3'] = self.plainTextEdit_nback_q3.toPlainText()
+        
+        with open(self.__path + "nback.json", "w") as outfile: 
+            json.dump(info, outfile)
+
         self.label_guardado_nback.setText('¡Guardado!')
+        self.plainTextEdit_nback_q1.clear()
+        self.plainTextEdit_nback_q2.clear()
+        self.plainTextEdit_nback_q3.clear()
 
     def __getDataSource(self):
         data = self.tableDatos_prueba

@@ -13,6 +13,8 @@ class StressTest:
         self.__audioRecorder = AudioRecorder()
         self.__path = ''
         self.__id = 0
+        self.__showCorrectFlag = True
+        self.__showIncorrectFlag = True
 
     
     def start(self):
@@ -56,6 +58,18 @@ class StressTest:
 
     def getId(self):
         return self.__id
+    
+    def setShowCorrectFlag(self, flag):
+        self.__showCorrectFlag = flag
+
+    def setShowIncorrectFlag(self, flag):
+        self.__showIncorrectFlag = flag
+
+    def isShowCorrect(self):
+        return self.__showCorrectFlag
+    
+    def isShowIncorrect(self):
+        return self.__showIncorrectFlag
 
 
     def startRecording(self):

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1118</width>
+    <width>1147</width>
     <height>740</height>
    </rect>
   </property>
@@ -19,12 +19,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1091</width>
+      <width>1131</width>
       <height>681</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -1758,7 +1758,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
             <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_nada_2">
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_nada">
               <property name="text">
                <string>Nada estresado</string>
               </property>
@@ -3346,7 +3346,7 @@
        <rect>
         <x>970</x>
         <y>0</y>
-        <width>121</width>
+        <width>151</width>
         <height>111</height>
        </rect>
       </property>
@@ -3358,7 +3358,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>119</width>
+         <width>149</width>
          <height>109</height>
         </rect>
        </property>
@@ -3387,7 +3387,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>99</width>
+             <width>129</width>
              <height>68</height>
             </rect>
            </property>
@@ -3419,6 +3419,97 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QScrollArea" name="scrollArea_10">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>110</y>
+        <width>151</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_10">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>149</width>
+         <height>109</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_14">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Estimulos</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_11">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_11">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>129</width>
+             <height>68</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QCheckBox" name="checkBox_nback_responseCorrect">
+              <property name="text">
+               <string>Correcto</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_nback_responseIncorrect">
+              <property name="text">
+               <string>Incorrecto</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_nback_waitTime">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>600</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Espera de tiempo</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -3427,7 +3518,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1118</width>
+     <width>1147</width>
      <height>20</height>
     </rect>
    </property>
