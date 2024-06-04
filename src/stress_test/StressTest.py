@@ -58,7 +58,9 @@ class StressTest:
         return self.__id
 
 
-    def startRecording(self):
+    def startRecording(self, path='', listFlag=False):
+        self.__videoRecorder.setPath(path)
+        self.__videoRecorder.setListFlag(listFlag)
         self.__video_thread = threading.Thread(target=self.__videoRecorder.start)
         self.__video_thread.start()
         self.__audioRecorder = AudioRecorder()
@@ -70,6 +72,13 @@ class StressTest:
         self.__audioRecorder.stop()
         self.__videoRecorder.save(self.__path)
         self.__audioRecorder.save(self.__path)
+    
+    ##
+    def stopRecordingRelax1(self,index):
+        self.__videoRecorder.stop()
+        self.__audioRecorder.stop()
+        self.__videoRecorder.saveRelax1(self.__path,index)
+        self.__audioRecorder.saveRelax1(self.__path,index)
 
     def getCurrentFrame(self):
         return self.__videoRecorder.getCurrentFrame()

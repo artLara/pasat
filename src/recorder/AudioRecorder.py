@@ -29,3 +29,21 @@ class AudioRecorder:
         wf.setframerate(self.RATE)
         wf.writeframes(b''.join(self.frames))
         wf.close()
+    
+    def saveRelax1(self, path,index):
+        if index ==1:
+            # path = path+'relax/'
+            wf = wave.open(path+'audioRelax.wav', 'wb')
+            wf.setnchannels(self.CHANNELS)
+            wf.setsampwidth(self.p.get_sample_size(self.FORMAT))
+            wf.setframerate(self.RATE)
+            wf.writeframes(b''.join(self.frames))
+            wf.close()
+        elif index ==2:
+            # path = path+'Instrucciones/'
+            wf = wave.open(path+'audioInstrucciones.wav', 'wb')
+            wf.setnchannels(self.CHANNELS)
+            wf.setsampwidth(self.p.get_sample_size(self.FORMAT))
+            wf.setframerate(self.RATE)
+            wf.writeframes(b''.join(self.frames))
+            wf.close()          

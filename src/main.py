@@ -8,6 +8,11 @@ from multiprocessing import Process, Queue
 import sys
 import json
 
+##
+from stress_test.StressTest import StressTest
+import os
+import datetime
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -22,6 +27,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_registrar.clicked.connect(self.__loadId)
         self.pushButton_nback_guardar.clicked.connect(self.__saveFormsNBack)
         self.pushButton_pasat_guardar.clicked.connect(self.__saveFormsPasat)
+
+        ##botones para grabar videos extras pasat
+        self.pushButton_grabar_relax1.clicked.connect(self.__grabarRelax1)
+        self.pushButton_detener_relax1.clicked.connect(self.__detenerRelax1)
+        self.pushButton_grabar_instrucciones_pasat.clicked.connect(self.__grabarRelax1)
+        self.pushButton_detener_instrucciones_pasat.clicked.connect(self.__detenerInstrucciones)
+        ##botones para grabar extras nback
+        self.pushButton_grabar_relax2.clicked.connect(self.__grabarRelax2)
+        self.pushButton_detener_relax2.clicked.connect(self.__detenerRelax2)
+        self.pushButton_grabar_instrucciones_nback.clicked.connect(self.__grabarRelax2)
+        self.pushButton_detener_instrucciones_nback.clicked.connect(self.__detenerInstruccionesNback)
 
         self.pushButton_1.clicked.connect(self.button1)
         self.pushButton_2.clicked.connect(self.button2)
@@ -57,13 +73,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __start(self):
         currentTest = None
-        if self.tabWidget.currentIndex() == 2:
+        if self.tabWidget.currentIndex() == 3:
             currentTest = self.__pasat
             currentTest.setTestingMode(self.radioButton_prueba.isChecked())
             currentTest.setVisual(self.checkBox_visual.isChecked()) 
             currentTest.setAudio(self.checkBox_auditivo.isChecked())
 
-        elif self.tabWidget.currentIndex() == 3:
+        elif self.tabWidget.currentIndex() == 7:
             currentTest = self.__nback
             currentTest.setTestingMode(self.radioButton_prueba_nback.isChecked())
             currentTest.setVisual(self.checkBox_visual_nback.isChecked()) 
@@ -71,6 +87,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         else:
             print('Something is wrong, Ypu try a test in a different tab')
+            print("tab currentIndex "+str(self.tabWidget.currentIndex()))
         
         currentTest.setId(self.__id)
         currentTest.setRounds(self.getData())
@@ -95,42 +112,96 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.label_guardado_pasat.setText('')
         self.label_guardado_nback.setText('')
 
-    def __saveFormsPasat(self):
-        self.label_guardado_pasat.setText('¡Guardado!')
+    # def __saveFormsPasat(self):
+    #     self.label_guardado_pasat.setText('¡Guardado!')
 
-    def __saveFormsNBack(self):
-        self.label_guardado_nback.setText('¡Guardado!')
+    # def __saveFormsNBack(self):
+    #     self.label_guardado_nback.setText('¡Guardado!')
+
+    ### 
+    def __initDirSaveNback(self):
+        currentTestNback = self.__nback
+        currentTestNback.setId(self.__id)
+        nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
+        path = '../usr/nback_information/' + str(self.__nback.getId()) + '/'
+        currentTestNback.setPath(path)
+        print("ruta de currentTestNback:"+currentTestNback.getPath())
+        if not os.path.exists(currentTestNback.getPath()): 
+            print("crea dir nback en main")
+            os.makedirs(self.__nback.getPath())
+    def __grabarRelax2(self):
+        self.__initDirSaveNback()
+        self.__nback.startRecording(listFlag=True)
+    def __detenerRelax2(self):
+        print('DetenerRelax2')
+        currentTestNback = self.__nback
+        currentTestNback.stopRecordingRelax1(1)
+
+    def __detenerInstruccionesNback(self):
+        currentTestNback = self.__nback
+        currentTestNback.stopRecordingRelax1(2)
+
+    def __initDirSave(self):
+        currentTest = self.__pasat
+        currentTest.setId(self.__id)
+        nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
+        path = '../usr/pasat_information/' + str(self.__pasat.getId()) + '/'
+        currentTest.setPath(path)
+        print("ruta de currentTest:"+currentTest.getPath())
+        # print('ruta objeto pasat main' + self.getPath())
+        if not os.path.exists(currentTest.getPath()): 
+            print("crea dir pasat en main")
+            os.makedirs(self.__pasat.getPath())
+
+        self.__path = '../usr/forms/' + str(self.__id) + '/'
+        if not os.path.exists(self.__path): 
+            os.makedirs(self.__path)
+
+    def __grabarRelax1(self):
+        self.__initDirSave()
+        # self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start, kwargs={'currentFrame':self.__currentFrame})
+        self.__pasat.startRecording(listFlag=True)
+
+    def __detenerRelax1(self):
+        currentTest = self.__pasat
+        currentTest.stopRecordingRelax1(1)
+    
+    def __detenerInstrucciones(self):
+        currentTest = self.__pasat
+        currentTest.stopRecordingRelax1(2)
+    ### aqui termina lo que agregue
 
     def __getDataSource(self):
         data = self.tableDatos_prueba
         numRounds = self.spinBoxRounds_prueba.value()
 
-        if self.tabWidget.currentIndex() == 2 and self.radioButton_prueba.isChecked():
+        if self.tabWidget.currentIndex() == 3 and self.radioButton_prueba.isChecked():
             data = self.tableDatos_prueba
             numRounds = self.spinBoxRounds_prueba.value()
 
-        elif self.tabWidget.currentIndex() == 2 and self.radioButton_entrenamiento.isChecked():
+        elif self.tabWidget.currentIndex() == 3 and self.radioButton_entrenamiento.isChecked():
             data = self.tableDatos
             numRounds = self.spinBoxRounds.value()
 
-        elif self.tabWidget.currentIndex() == 3 and self.radioButton_prueba_nback.isChecked():
+        elif self.tabWidget.currentIndex() == 7 and self.radioButton_prueba_nback.isChecked():
             data = self.tableDatos_nback_testing
             numRounds = self.spinBoxRounds_nback_testing.value()    
 
-        elif self.tabWidget.currentIndex() == 3 and self.radioButton_entrenamiento_nback.isChecked():
+        elif self.tabWidget.currentIndex() == 7 and self.radioButton_entrenamiento_nback.isChecked():
             data = self.tableDatos_nback_training
             numRounds = self.spinBoxRounds_nback_training.value()
         else:
             print('Something is wrong, Ypu try a test in a different tab')
+            print("tab currentIndex en __getDataSource: "+ self.tabWidget.currentIndex())
 
         return data, numRounds
     
     def getFeaturesFromDataTable(self, data, index):
         sums = int(data.item(index, 0).text())
-        seconds = int(data.item(index, 1).text())
+        seconds = float(data.item(index, 1).text())
         try:
             n = int(data.item(index, 2).text())
-            transition = int(data.item(index, 3).text())
+            transition = float(data.item(index, 3).text())
 
         except:
             n = 1
@@ -150,6 +221,92 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
     def __del__(self):
         sys.exit()
+
+    def __getOptionEstresPasat(self):
+        if self.radioButton_pasat_estresado_nada.isChecked():
+            return 'nada'
+        
+        if self.radioButton_pasat_estresado_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_pasat_estresado_moderado.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_pasat_estresado_muy.isChecked():
+            return 'mucho'
+        
+    def __getOptionDificultadPasat(self):
+        if self.radioButton_pasat_estresado_dif_ninguna.isChecked():
+            return 'nada'
+        
+        if self.radioButton_pasat_estresado_dif_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_pasat_estresado_dif_mod.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_pasat_estresado_dif_mucha.isChecked():
+            return 'mucho'
+        
+    def __saveFormsPasat(self):
+        self.__initDirSave()
+        info = {}
+        info['estres'] = self.__getOptionEstresPasat()
+        info['dificultad'] = self.__getOptionDificultadPasat()
+        info['q1'] = self.plainTextEdit_pasat_q1.toPlainText()
+        info['q2'] = self.plainTextEdit_pasat_q2.toPlainText()
+        info['q3'] = self.plainTextEdit_pasat_q3.toPlainText()
+        
+        with open(self.__path + "pasat.json", "w") as outfile: 
+            json.dump(info, outfile)
+
+        self.label_guardado_pasat.setText('¡Guardado!')
+        self.plainTextEdit_pasat_q1.clear()
+        self.plainTextEdit_pasat_q2.clear()
+        self.plainTextEdit_pasat_q3.clear()
+
+    def __getOptionEstresNBack(self):
+        if self.radioButton_nback_estresado_nada.isChecked():
+            return 'nada'
+        
+        if self.radioButton_nback_estresado_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_nback_estresado_moderado.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_nback_estresado_muy.isChecked():
+            return 'mucho'
+        
+    def __getOptionDificultadNBack(self):
+        if self.radioButton_nback_estresado_dif_ninguna.isChecked():
+            return 'nada'
+        
+        if self.radioButton_nback_estresado_dif_poco.isChecked():
+            return 'poco'
+        
+        if self.radioButton_nback_estresado_dif_mod.isChecked():
+            return 'moderado'
+        
+        if self.radioButton_nback_estresado_dif_mucha.isChecked():
+            return 'mucho'
+        
+    def __saveFormsNBack(self):
+        self.__initDirSave()
+        info = {}
+        info['estres'] = self.__getOptionEstresNBack()
+        info['dificultad'] = self.__getOptionDificultadNBack()
+        info['q1'] = self.plainTextEdit_nback_q1.toPlainText()
+        info['q2'] = self.plainTextEdit_nback_q2.toPlainText()
+        info['q3'] = self.plainTextEdit_nback_q3.toPlainText()
+        
+        with open(self.__path + "nback.json", "w") as outfile: 
+            json.dump(info, outfile)
+
+        self.label_guardado_nback.setText('¡Guardado!')
+        self.plainTextEdit_nback_q1.clear()
+        self.plainTextEdit_nback_q2.clear()
+        self.plainTextEdit_nback_q3.clear()
 
     # def roundsValueChange(self):
     #     #Se dan el numero de filas solicitadas

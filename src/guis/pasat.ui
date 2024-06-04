@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1118</width>
+    <width>1165</width>
     <height>740</height>
    </rect>
   </property>
@@ -19,12 +19,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1091</width>
-      <height>681</height>
+      <width>1688</width>
+      <height>741</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -181,7 +181,7 @@
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>Relax compa</string>
+      <string>Relajación1</string>
      </attribute>
      <widget class="QLabel" name="label_operation_3">
       <property name="geometry">
@@ -198,10 +198,88 @@
        </font>
       </property>
       <property name="text">
-       <string>Don't worry... be happy...</string>
+       <string>Ejercicio de relajación 1</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_grabar_relax1">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>200</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Grabar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_detener_relax1">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>210</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Detener</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>Instrucciones PASAT</string>
+     </attribute>
+     <widget class="QLabel" name="label_operation_4">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>70</y>
+        <width>761</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Instrucciones de prueba PASAT </string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_grabar_instrucciones_pasat">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>240</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Grabar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_detener_instrucciones_pasat">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>250</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Detener</string>
       </property>
      </widget>
     </widget>
@@ -973,6 +1051,597 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>Encuesta PASAT</string>
+     </attribute>
+     <widget class="QScrollArea" name="scrollArea_18">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>361</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_18">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>359</width>
+         <height>219</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <widget class="QLabel" name="label_25">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>¿Cómo calificarías el nivel de estrés que</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_27">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>experimentaste durante la prueba realizada?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_19">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_19">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>339</width>
+             <height>153</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_16">
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_nada">
+              <property name="text">
+               <string>Nada estresado</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_poco">
+              <property name="text">
+               <string>Poco Estresado</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_moderado">
+              <property name="text">
+               <string>Moderadamente estresado</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_muy">
+              <property name="text">
+               <string>Muy estresado</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea_20">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>10</y>
+        <width>361</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_20">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>359</width>
+         <height>219</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_17">
+        <item>
+         <widget class="QLabel" name="label_26">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>¿Tuviste dificultades recordando lo que</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_28">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>estabas haciendo durante la prueba pasat?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_21">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_21">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>339</width>
+             <height>153</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_18">
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_ninguna">
+              <property name="text">
+               <string>Ninguna dificultad</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_poco">
+              <property name="text">
+               <string>Un poco de dificultad</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_mod">
+              <property name="text">
+               <string>Dificultad moderada</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_mucha">
+              <property name="text">
+               <string>Mucha dificultad</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea_22">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>230</y>
+        <width>361</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_22">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>359</width>
+         <height>409</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_19">
+        <item>
+         <widget class="QLabel" name="label_29">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>¿Cómo consideras que te fue en la prueba pasat?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_23">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_23">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>339</width>
+             <height>366</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_20">
+            <item>
+             <widget class="QPlainTextEdit" name="plainTextEdit_pasat_q1"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea_24">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>230</y>
+        <width>401</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_24">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>399</width>
+         <height>409</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_21">
+        <item>
+         <widget class="QLabel" name="label_30">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>¿Hubo algún momento durante la prueba en el que tan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_31">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>abrumado que dejaste de responder conscientemente?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_25">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_25">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>379</width>
+             <height>343</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_22">
+            <item>
+             <widget class="QPlainTextEdit" name="plainTextEdit_pasat_q2"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea_26">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>10</y>
+        <width>291</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_26">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>289</width>
+         <height>409</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_23">
+        <item>
+         <widget class="QLabel" name="label_32">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Escribe un breve texto describiendo tu</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_33">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>experiencia al realizar este ejercicio</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_27">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_27">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>269</width>
+             <height>343</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_24">
+            <item>
+             <widget class="QPlainTextEdit" name="plainTextEdit_pasat_q3"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButton_pasat_guardar">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>440</y>
+        <width>181</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>170</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>170</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>170</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="text">
+       <string>GUARDAR</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_guardado_pasat">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>520</y>
+        <width>261</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_9">
+     <attribute name="title">
+      <string>Relajación 2</string>
+     </attribute>
+     <widget class="QLabel" name="label_operation_5">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>80</y>
+        <width>761</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Ejercicio de relajación 2</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_grabar_relax2">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>250</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Grabar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_detener_relax2">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>260</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Detener</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_10">
+     <attribute name="title">
+      <string>Instrucciones N-Back</string>
+     </attribute>
+     <widget class="QLabel" name="label_operation_6">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>60</y>
+        <width>761</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>32</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Instrucciones de prueba N-Back</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_grabar_instrucciones_nback">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>230</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Grabar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_detener_instrucciones_nback">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>240</y>
+        <width>80</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Detener</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
       <string>N-Back</string>
@@ -1688,493 +2357,6 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_7">
-     <attribute name="title">
-      <string>Encuesta PASAT</string>
-     </attribute>
-     <widget class="QScrollArea" name="scrollArea_18">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>361</width>
-        <height>221</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_18">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>359</width>
-         <height>219</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_15">
-        <item>
-         <widget class="QLabel" name="label_25">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>¿Cómo calificarías el nivel de estrés que</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_27">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>experimentaste durante la prueba realizada?</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_19">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_19">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>339</width>
-             <height>157</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_16">
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_nada_2">
-              <property name="text">
-               <string>Nada estresado</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_poco">
-              <property name="text">
-               <string>Poco Estresado</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_moderado">
-              <property name="text">
-               <string>Moderadamente estresado</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_muy">
-              <property name="text">
-               <string>Muy estresado</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QScrollArea" name="scrollArea_20">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>10</y>
-        <width>361</width>
-        <height>221</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_20">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>359</width>
-         <height>219</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_17">
-        <item>
-         <widget class="QLabel" name="label_26">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>¿Tuviste dificultades recordando lo que</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_28">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>estabas haciendo durante la prueba pasat?</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_21">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_21">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>339</width>
-             <height>157</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_18">
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_ninguna">
-              <property name="text">
-               <string>Ninguna dificultad</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_poco">
-              <property name="text">
-               <string>Un poco de dificultad</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_mod">
-              <property name="text">
-               <string>Dificultad moderada</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="radioButton_pasat_estresado_dif_mucha">
-              <property name="text">
-               <string>Mucha dificultad</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QScrollArea" name="scrollArea_22">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>230</y>
-        <width>361</width>
-        <height>411</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_22">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>359</width>
-         <height>409</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_19">
-        <item>
-         <widget class="QLabel" name="label_29">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>¿Cómo consideras que te fue en la prueba pasat?</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_23">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_23">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>339</width>
-             <height>368</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_20">
-            <item>
-             <widget class="QPlainTextEdit" name="plainTextEdit_pasat_q1"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QScrollArea" name="scrollArea_24">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>230</y>
-        <width>401</width>
-        <height>411</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_24">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>399</width>
-         <height>409</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_21">
-        <item>
-         <widget class="QLabel" name="label_30">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>¿Hubo algún momento durante la prueba en el que tan</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_31">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>abrumado que dejaste de responder conscientemente?</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_25">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_25">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>379</width>
-             <height>347</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_22">
-            <item>
-             <widget class="QPlainTextEdit" name="plainTextEdit_pasat_q2"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QScrollArea" name="scrollArea_26">
-      <property name="geometry">
-       <rect>
-        <x>790</x>
-        <y>10</y>
-        <width>291</width>
-        <height>411</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_26">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>289</width>
-         <height>409</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_23">
-        <item>
-         <widget class="QLabel" name="label_32">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Escribe un breve texto describiendo tu</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_33">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>experiencia al realizar este ejercicio</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QScrollArea" name="scrollArea_27">
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_27">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>269</width>
-             <height>347</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_24">
-            <item>
-             <widget class="QPlainTextEdit" name="plainTextEdit_pasat_q3"/>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="pushButton_pasat_guardar">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>440</y>
-        <width>181</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>170</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>170</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>0</red>
-            <green>170</green>
-            <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="text">
-       <string>GUARDAR</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_guardado_pasat">
-      <property name="geometry">
-       <rect>
-        <x>800</x>
-        <y>520</y>
-        <width>261</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>32</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </widget>
     <widget class="QWidget" name="tab_15">
      <attribute name="title">
       <string>Encuesta NBack</string>
@@ -2240,7 +2422,7 @@
              <x>0</x>
              <y>0</y>
              <width>269</width>
-             <height>347</height>
+             <height>343</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -2365,7 +2547,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>157</height>
+             <height>153</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -2451,7 +2633,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>368</height>
+             <height>366</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -2526,7 +2708,7 @@
              <x>0</x>
              <y>0</y>
              <width>379</width>
-             <height>347</height>
+             <height>343</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -2601,7 +2783,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>157</height>
+             <height>153</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -2811,8 +2993,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>224</width>
-         <height>109</height>
+         <width>210</width>
+         <height>111</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -2840,7 +3022,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>204</width>
+             <width>190</width>
              <height>68</height>
             </rect>
            </property>
@@ -2861,7 +3043,7 @@
                <string>Visual</string>
               </property>
               <property name="checked">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -2923,7 +3105,7 @@
              <number>1</number>
             </property>
             <property name="value">
-             <number>3</number>
+             <number>4</number>
             </property>
            </widget>
           </item>
@@ -2935,7 +3117,7 @@
            <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
           </property>
           <property name="rowCount">
-           <number>3</number>
+           <number>4</number>
           </property>
           <property name="columnCount">
            <number>2</number>
@@ -2955,6 +3137,11 @@
             <string>Round 3</string>
            </property>
           </row>
+          <row>
+           <property name="text">
+            <string>Round 4</string>
+           </property>
+          </row>
           <column>
            <property name="text">
             <string>Reactivos</string>
@@ -2967,17 +3154,17 @@
           </column>
           <item row="0" column="0">
            <property name="text">
-            <string>3</string>
+            <string>25</string>
            </property>
           </item>
           <item row="0" column="1">
            <property name="text">
-            <string>4</string>
+            <string>3</string>
            </property>
           </item>
           <item row="1" column="0">
            <property name="text">
-            <string>3</string>
+            <string>25</string>
            </property>
           </item>
           <item row="1" column="1">
@@ -2987,10 +3174,20 @@
           </item>
           <item row="2" column="0">
            <property name="text">
-            <string>3</string>
+            <string>25</string>
            </property>
           </item>
           <item row="2" column="1">
+           <property name="text">
+            <string>2</string>
+           </property>
+          </item>
+          <item row="3" column="0">
+           <property name="text">
+            <string>25</string>
+           </property>
+          </item>
+          <item row="3" column="1">
            <property name="text">
             <string>2</string>
            </property>
@@ -3056,7 +3253,7 @@
              <number>1</number>
             </property>
             <property name="value">
-             <number>3</number>
+             <number>2</number>
             </property>
            </widget>
           </item>
@@ -3068,7 +3265,7 @@
            <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
           </property>
           <property name="rowCount">
-           <number>3</number>
+           <number>2</number>
           </property>
           <property name="columnCount">
            <number>4</number>
@@ -3081,11 +3278,6 @@
           <row>
            <property name="text">
             <string>Round 2</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>Round 3</string>
            </property>
           </row>
           <column>
@@ -3110,12 +3302,12 @@
           </column>
           <item row="0" column="0">
            <property name="text">
-            <string>5</string>
+            <string>6</string>
            </property>
           </item>
           <item row="0" column="1">
            <property name="text">
-            <string>2</string>
+            <string>1.5</string>
            </property>
           </item>
           <item row="0" column="2">
@@ -3125,47 +3317,27 @@
           </item>
           <item row="0" column="3">
            <property name="text">
-            <string>0</string>
+            <string>0.5</string>
            </property>
           </item>
           <item row="1" column="0">
            <property name="text">
-            <string>5</string>
+            <string>6</string>
            </property>
           </item>
           <item row="1" column="1">
            <property name="text">
-            <string>2</string>
+            <string>1.5</string>
            </property>
           </item>
           <item row="1" column="2">
            <property name="text">
-            <string>1</string>
+            <string>2</string>
            </property>
           </item>
           <item row="1" column="3">
            <property name="text">
-            <string>0</string>
-           </property>
-          </item>
-          <item row="2" column="0">
-           <property name="text">
-            <string>5</string>
-           </property>
-          </item>
-          <item row="2" column="1">
-           <property name="text">
-            <string>2</string>
-           </property>
-          </item>
-          <item row="2" column="2">
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item row="2" column="3">
-           <property name="text">
-            <string>0</string>
+            <string>0.5</string>
            </property>
           </item>
          </widget>
@@ -3224,7 +3396,7 @@
              <number>1</number>
             </property>
             <property name="value">
-             <number>3</number>
+             <number>2</number>
             </property>
            </widget>
           </item>
@@ -3235,8 +3407,14 @@
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
           </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>false</bool>
+          </property>
           <property name="rowCount">
-           <number>3</number>
+           <number>2</number>
           </property>
           <property name="columnCount">
            <number>4</number>
@@ -3249,11 +3427,6 @@
           <row>
            <property name="text">
             <string>Round 2</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>Round 3</string>
            </property>
           </row>
           <column>
@@ -3278,12 +3451,12 @@
           </column>
           <item row="0" column="0">
            <property name="text">
-            <string>5</string>
+            <string>22</string>
            </property>
           </item>
           <item row="0" column="1">
            <property name="text">
-            <string>2</string>
+            <string>1.5</string>
            </property>
           </item>
           <item row="0" column="2">
@@ -3293,47 +3466,27 @@
           </item>
           <item row="0" column="3">
            <property name="text">
-            <string>0</string>
+            <string>0.5</string>
            </property>
           </item>
           <item row="1" column="0">
            <property name="text">
-            <string>5</string>
+            <string>22</string>
            </property>
           </item>
           <item row="1" column="1">
            <property name="text">
-            <string>2</string>
+            <string>1.5</string>
            </property>
           </item>
           <item row="1" column="2">
            <property name="text">
-            <string>1</string>
+            <string>2</string>
            </property>
           </item>
           <item row="1" column="3">
            <property name="text">
-            <string>0</string>
-           </property>
-          </item>
-          <item row="2" column="0">
-           <property name="text">
-            <string>5</string>
-           </property>
-          </item>
-          <item row="2" column="1">
-           <property name="text">
-            <string>2</string>
-           </property>
-          </item>
-          <item row="2" column="2">
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item row="2" column="3">
-           <property name="text">
-            <string>0</string>
+            <string>0.5</string>
            </property>
           </item>
          </widget>
@@ -3358,8 +3511,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>119</width>
-         <height>109</height>
+         <width>105</width>
+         <height>111</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -3387,8 +3540,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>99</width>
-             <height>68</height>
+             <width>90</width>
+             <height>70</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -3398,7 +3551,7 @@
                <string>Visual</string>
               </property>
               <property name="checked">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -3427,8 +3580,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1118</width>
-     <height>20</height>
+     <width>1165</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

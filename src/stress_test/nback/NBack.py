@@ -12,6 +12,7 @@ from PyQt5.QtGui import QPixmap
 from pynput import keyboard
 from pynput.keyboard import Key, Listener
 import threading
+from numpy import random as randomNP
 
 class NBack(StressTest):
     def __init__(self, label_matrix, label_letter, label_nback_title, label_message_matrix, label_message_letter):
@@ -24,7 +25,7 @@ class NBack(StressTest):
         self.__label_nback_title = label_nback_title
         self.__label_message_matrix = label_message_matrix
         self.__label_message_letter = label_message_letter
-        self.__n = 1
+        self.__MAX_QUESTIONS = 0
         self.__matrixQueue = None
         self.userNumber = -1
         self.__shiftR = False
@@ -67,12 +68,14 @@ class NBack(StressTest):
 
         if self.isTestingMode():
             self.__initDirSave()
-            self.startRecording()
+            # self.startRecording()
+            self.startRecording(path = '../usr/nback_information/'+str(self.getId())+'/')
 
         for indx, round in enumerate(self.getRounds()):
             if self.__runRound(round):
                 return 
         
+
         time.sleep(1.5)
         self.__finishTest()
         if self.isTestingMode():
@@ -86,6 +89,7 @@ class NBack(StressTest):
         
         self.__timer.seconds = round.seconds
         self.__label_nback_title.setText("{}-Back".format(round.n))
+        time.sleep(2)
         if self.__runTest(round, self.__runQuestion1, 1, self.__label_message_matrix):
             return True
 
@@ -179,18 +183,62 @@ class NBack(StressTest):
     def __getRandomCoordinate(self):
         return (random.randint(0,1), random.randint(0,1))
 
+    # def __getRandomLetter(self):
+    #     self.__lettersDict = {0:'C',
+    #                           1:'H',
+    #                           2:'K',
+    #                           3:'N',
+    #                           4:'R',
+    #                           5:'W',
+    #                           6:'X',
+    #                           7:'Y'
+    #                           }
+        
+    #     return self.__lettersDict[random.randint(0,7)]
+    
     def __getRandomLetter(self):
-        self.__lettersDict = {0:'C',
-                              1:'H',
-                              2:'K',
-                              3:'N',
-                              4:'R',
-                              5:'W',
-                              6:'X',
-                              7:'Y'
+        self.__lettersDict = {0:'c',
+                              1:'h',
+                              2:'r',
+                              3:'w',
+                              4:'x',
                               }
         
-        return self.__lettersDict[random.randint(0,7)]
+        return self.__lettersDict[random.randint(0,4)]
+
+    ##
+    def __initSequenceCoord(self,testNumber, size):
+        if testNumber == 1:
+            seed = 44
+        if testNumber == 3:
+            seed = 46
+
+        # N = 22
+        # R = 1
+        
+        random.seed(seed) #42
+
+        generate_tuples = lambda N, R: [(random.randint(0, 1), random.randint(0, 1)) for _ in range(size)]
+
+        self.__rand_coord = generate_tuples(size, 1)  
+        print(self.__rand_coord)  
+
+
+    def __initSequence(self, testNumber, size):
+        if testNumber == 2:
+            seed = 44
+
+        if testNumber == 3:
+            seed = 46
+        
+        randomNP.seed(seed)
+        self.__rand_list = randomNP.choice(['x', 'w', 'r', 'h','c'], p=[0.2, 0.2, 0.2, 0.2,0.2], size=(size)).tolist()
+
+    def __getRandomCoord(self):
+        return self.__rand_coord.pop()
+
+    def __getRandomSequence(self):
+        return self.__rand_list.pop()
     
     def __showImage(self, coordinate):
         imageName = "media/images/{}{}.png".format(coordinate[0], coordinate[1])
@@ -198,7 +246,7 @@ class NBack(StressTest):
     
     def __displayLetter(self, letter):
         if self.isVisual():
-            self.__label_letter.setText('{}'.format(letter))
+            self.__label_letter.setText('{}'.format(letter.upper()))
 
     def __playLetter(self, letter):
         if self.isAudio():
@@ -221,9 +269,17 @@ class NBack(StressTest):
         time.sleep(seconds)
     
     def __runTest(self, round, questionFuntion, testNumber, label_message=None):
-        self.__label_nback_title.setText('Inicia test {}'.format(testNumber))
+        tipo_test=["visual","auditivo","dual"]
+        self.__label_nback_title.setText('Test {}'.format(tipo_test[testNumber-1]))
         self.__initQueue(round.n, testNumber)
-        for _ in range(round.sums):
+        if testNumber != 1:
+            self.__initSequence(testNumber, round.sums)
+        
+        ###
+        if testNumber != 2:
+            self.__initSequenceCoord(testNumber,round.sums)
+        
+        for _ in range(round.sums): #num de preguntas
             response = questionFuntion()
             if response == -1:
                 return True
@@ -231,7 +287,7 @@ class NBack(StressTest):
             self.__questionTransition(testNumber, round.transition)            
 
         time.sleep(1)
-        self.__label_nback_title.setText('Fin test {}'.format(testNumber))
+        self.__label_nback_title.setText('Fin test {}'.format(tipo_test[testNumber-1]))
         self.__questionTransition(testNumber, round.transition)
         self.__label_matrix.clear()        
         time.sleep(1.5)
@@ -247,7 +303,9 @@ class NBack(StressTest):
             self.__finishTest()
             return -1
         
-        coordinate = self.__getRandomCoordinate()
+        # coordinate = self.__getRandomCoordinate()
+        coordinate = self.__getRandomCoord()
+        print(coordinate)
         self.__matrixQueue.put(coordinate)
         self.__showImage(coordinate)
         self.__timer()
@@ -276,7 +334,9 @@ class NBack(StressTest):
             self.__finishTest()
             return -1
         
-        letter = self.__getRandomLetter()
+
+        # letter = self.__getRandomLetter()
+        letter = self.__getRandomSequence()
         self.__matrixQueue.put(letter)
         self.__displayLetter(letter)
         self.__audioLetter_thread = threading.Thread(target=self.__playLetter, kwargs={'letter':letter})
@@ -307,8 +367,10 @@ class NBack(StressTest):
             self.__finishTest()
             return -1
         
-        letter = self.__getRandomLetter()
-        coordinate = self.__getRandomCoordinate()
+        letter = self.__getRandomSequence()
+        # coordinate = self.__getRandomCoordinate()
+        coordinate = self.__getRandomCoord()
+        print(coordinate)
         self.__displayLetter(letter)
         self.__showImage(coordinate)
         self.__audioLetter_thread = threading.Thread(target=self.__playLetter, kwargs={'letter':letter})

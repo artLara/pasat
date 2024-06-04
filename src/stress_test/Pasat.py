@@ -25,7 +25,9 @@ class Pasat(StressTest):
         nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
         path = '../usr/pasat_information/' + str(self.getId()) + '/'
         self.setPath(path)
+        print('ruta de pasat class'+ self.getPath())
         if not os.path.exists(self.getPath()): 
+            print("crea dir pasat clase pasat")
             os.makedirs(self.getPath())
 
     def stop(self):
@@ -41,7 +43,7 @@ class Pasat(StressTest):
             self.__currentFrame = 0
             self.__initDirSave()
             # self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start, kwargs={'currentFrame':self.__currentFrame})
-            self.startRecording()
+            self.startRecording(path = '../usr/pasat_information/'+str(self.getId())+'/')
 
         for indx, round in enumerate(self.getRounds()):
             if self.__runRound(round):
@@ -69,6 +71,7 @@ class Pasat(StressTest):
         self.__timer.seconds = round.seconds
         self.__label_wrong.setText("")
         oldNumber = 0
+        self.__displayNumber(0)
         self.__playNumber(0)
         time.sleep(round.seconds)
         for _ in range(round.sums):
@@ -86,20 +89,22 @@ class Pasat(StressTest):
         self.__displayNumber(number1)
         self.__playNumber(number1)
         self.__timer()
+        responseFlag = True
+        
         while self.__timer.status:
             if self.__stopFlag:
                 self.__finishTest()
                 return -1
             
-            if self.userNumber != 0:
+            if self.userNumber != 0 and responseFlag:
+                responseFlag = False
                 if (number1+oldNumber) != self.userNumber:
-                    self.__label_wrong.setText('Wrong!!!')
+                    self.__label_wrong.setText('Incorrecto')
                     self.__infoSaver.saveAnswer('wrong', self.getCurrentFrame())
-                    break
-                self.__label_wrong.setText('Correct!!!')
-                self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
-
-                break
+                    # break
+                else:
+                    self.__label_wrong.setText('Correcto')
+                    self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
 
         self.__timer.cancel()
         if self.userNumber == 0:
