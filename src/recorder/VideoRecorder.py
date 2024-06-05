@@ -14,7 +14,7 @@ class VideoRecorder:
         self.__path = path
 
     def setListFlag(self, flag):
-        self.__listFlag = True
+        self.__listFlag = flag
         
         
     def start(self):
@@ -64,6 +64,8 @@ class VideoRecorder:
 
         for ind, frame in enumerate(self.__frames):
             cv2.imwrite(path_images + str(ind) + ".jpg", frame)
+
+        self.__frames = []
     
     def saveRelax1(self, path,index):
         if index == 1:
@@ -76,4 +78,7 @@ class VideoRecorder:
 
         for ind, frame in enumerate(self.__frames):
             cv2.imwrite(path_images + str(ind) + ".jpg", frame)
+
+        self.__frames = []
+        
         
