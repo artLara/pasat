@@ -85,6 +85,7 @@ class Pasat(StressTest):
             self.__finishTest()
             return -1
         
+        self.__label_wrong.setText('')
         number1 = self.__getRandomNumber()
         self.userNumber = 0
         self.__displayNumber(number1)
