@@ -78,12 +78,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             currentTest.setTestingMode(self.radioButton_prueba.isChecked())
             currentTest.setVisual(self.checkBox_visual.isChecked()) 
             currentTest.setAudio(self.checkBox_auditivo.isChecked())
+            currentTest.setShowCorrectFlag(self.checkBox_pasat_responseCorrect.isChecked())
+            currentTest.setShowIncorrectFlag(self.checkBox_pasat_responseIncorrect.isChecked())
+            currentTest.setWaitTimeResponse(self.radioButton_pasat_waitTime.isChecked())
 
         elif self.tabWidget.currentIndex() == 7:
             currentTest = self.__nback
             currentTest.setTestingMode(self.radioButton_prueba_nback.isChecked())
             currentTest.setVisual(self.checkBox_visual_nback.isChecked()) 
             currentTest.setAudio(self.checkBox_auditivo_nback.isChecked())
+            currentTest.setShowCorrectFlag(self.checkBox_nback_responseCorrect.isChecked())
+            currentTest.setShowIncorrectFlag(self.checkBox_nback_responseIncorrect.isChecked())
+            currentTest.setWaitTimeResponse(self.radioButton_nback_waitTime.isChecked())
+
         
         else:
             print('Something is wrong, Ypu try a test in a different tab')
@@ -129,9 +136,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if not os.path.exists(currentTestNback.getPath()): 
             print("crea dir nback en main")
             os.makedirs(self.__nback.getPath())
+
     def __grabarRelax2(self):
         self.__initDirSaveNback()
         self.__nback.startRecording(listFlag=True)
+
     def __detenerRelax2(self):
         print('DetenerRelax2')
         currentTestNback = self.__nback

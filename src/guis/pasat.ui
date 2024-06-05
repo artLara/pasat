@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1165</width>
+    <width>1219</width>
     <height>740</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>10</number>
     </property>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -1116,7 +1116,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>153</height>
+             <height>157</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -1216,7 +1216,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>153</height>
+             <height>157</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -1302,7 +1302,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>366</height>
+             <height>368</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1377,7 +1377,7 @@
              <x>0</x>
              <y>0</y>
              <width>379</width>
-             <height>343</height>
+             <height>347</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_22">
@@ -1452,7 +1452,7 @@
              <x>0</x>
              <y>0</y>
              <width>269</width>
-             <height>343</height>
+             <height>347</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -2422,7 +2422,7 @@
              <x>0</x>
              <y>0</y>
              <width>269</width>
-             <height>343</height>
+             <height>347</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -2547,7 +2547,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>153</height>
+             <height>157</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -2633,7 +2633,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>366</height>
+             <height>368</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -2708,7 +2708,7 @@
              <x>0</x>
              <y>0</y>
              <width>379</width>
-             <height>343</height>
+             <height>347</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_28">
@@ -2783,7 +2783,7 @@
              <x>0</x>
              <y>0</y>
              <width>339</width>
-             <height>153</height>
+             <height>157</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -2899,7 +2899,7 @@
              <number>1</number>
             </property>
             <property name="value">
-             <number>3</number>
+             <number>2</number>
             </property>
            </widget>
           </item>
@@ -2911,7 +2911,7 @@
            <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
           </property>
           <property name="rowCount">
-           <number>3</number>
+           <number>2</number>
           </property>
           <property name="columnCount">
            <number>2</number>
@@ -2924,11 +2924,6 @@
           <row>
            <property name="text">
             <string>Round 2</string>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string>Round 3</string>
            </property>
           </row>
           <column>
@@ -2961,16 +2956,6 @@
             <string>3</string>
            </property>
           </item>
-          <item row="2" column="0">
-           <property name="text">
-            <string>3</string>
-           </property>
-          </item>
-          <item row="2" column="1">
-           <property name="text">
-            <string>2</string>
-           </property>
-          </item>
          </widget>
         </item>
        </layout>
@@ -2993,8 +2978,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>210</width>
-         <height>111</height>
+         <width>224</width>
+         <height>109</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -3022,7 +3007,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>190</width>
+             <width>204</width>
              <height>68</height>
             </rect>
            </property>
@@ -3154,7 +3139,7 @@
           </column>
           <item row="0" column="0">
            <property name="text">
-            <string>25</string>
+            <string>30</string>
            </property>
           </item>
           <item row="0" column="1">
@@ -3164,7 +3149,7 @@
           </item>
           <item row="1" column="0">
            <property name="text">
-            <string>25</string>
+            <string>30</string>
            </property>
           </item>
           <item row="1" column="1">
@@ -3174,7 +3159,7 @@
           </item>
           <item row="2" column="0">
            <property name="text">
-            <string>25</string>
+            <string>30</string>
            </property>
           </item>
           <item row="2" column="1">
@@ -3184,7 +3169,7 @@
           </item>
           <item row="3" column="0">
            <property name="text">
-            <string>25</string>
+            <string>30</string>
            </property>
           </item>
           <item row="3" column="1">
@@ -3196,6 +3181,100 @@
         </item>
        </layout>
       </widget>
+     </widget>
+     <widget class="QScrollArea" name="scrollArea_12">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>130</y>
+        <width>181</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_12">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>179</width>
+         <height>109</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_10">
+        <item>
+         <widget class="QLabel" name="label_15">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Estimulos</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_13">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_13">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>159</width>
+             <height>68</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <widget class="QCheckBox" name="checkBox_pasat_responseCorrect">
+              <property name="text">
+               <string>Correcto</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_pasat_responseIncorrect">
+              <property name="text">
+               <string>Incorrecto</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_pasat_waitTime">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>260</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Espera de tiempo</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
@@ -3302,7 +3381,7 @@
           </column>
           <item row="0" column="0">
            <property name="text">
-            <string>6</string>
+            <string>3</string>
            </property>
           </item>
           <item row="0" column="1">
@@ -3322,7 +3401,7 @@
           </item>
           <item row="1" column="0">
            <property name="text">
-            <string>6</string>
+            <string>3</string>
            </property>
           </item>
           <item row="1" column="1">
@@ -3499,8 +3578,8 @@
        <rect>
         <x>970</x>
         <y>0</y>
-        <width>121</width>
-        <height>111</height>
+        <width>151</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="widgetResizable">
@@ -3511,8 +3590,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>105</width>
-         <height>111</height>
+         <width>149</width>
+         <height>119</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -3540,8 +3619,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>90</width>
-             <height>70</height>
+             <width>129</width>
+             <height>78</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -3572,6 +3651,100 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QScrollArea" name="scrollArea_10">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>120</y>
+        <width>151</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_10">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>149</width>
+         <height>109</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_14">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Estimulos</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QScrollArea" name="scrollArea_11">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_11">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>129</width>
+             <height>68</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QCheckBox" name="checkBox_nback_responseCorrect">
+              <property name="text">
+               <string>Correcto</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_nback_responseIncorrect">
+              <property name="text">
+               <string>Incorrecto</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_nback_waitTime">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>250</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Espera de tiempo</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -3580,8 +3753,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1165</width>
-     <height>22</height>
+     <width>1219</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>

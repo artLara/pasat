@@ -13,6 +13,9 @@ class StressTest:
         self.__audioRecorder = AudioRecorder()
         self.__path = ''
         self.__id = 0
+        self.__showCorrectFlag = True
+        self.__showIncorrectFlag = True
+        self.__waitTimeResponse = False
 
     
     def start(self):
@@ -56,7 +59,26 @@ class StressTest:
 
     def getId(self):
         return self.__id
+    
+    def setShowCorrectFlag(self, flag):
+        self.__showCorrectFlag = flag
 
+    def setShowIncorrectFlag(self, flag):
+        self.__showIncorrectFlag = flag
+
+    def isShowCorrect(self):
+        return self.__showCorrectFlag
+    
+    def isShowIncorrect(self):
+        return self.__showIncorrectFlag
+
+    def setWaitTimeResponse(self, flag):
+        self.__waitTimeResponse = flag
+
+    def isWaitTimeResponse(self):
+        return self.__waitTimeResponse
+
+    
 
     def startRecording(self, path='', listFlag=False):
         self.__videoRecorder.setPath(path)

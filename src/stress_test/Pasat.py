@@ -75,6 +75,7 @@ class Pasat(StressTest):
         self.__playNumber(0)
         time.sleep(round.seconds)
         for _ in range(round.sums):
+            self.__label_wrong.setText('')
             oldNumber = self.__runSums(oldNumber)
             if oldNumber == -1:
                 return True
@@ -99,18 +100,25 @@ class Pasat(StressTest):
             if self.userNumber != 0 and responseFlag:
                 responseFlag = False
                 if (number1+oldNumber) != self.userNumber:
-                    self.__label_wrong.setText('Incorrecto')
                     self.__infoSaver.saveAnswer('wrong', self.getCurrentFrame())
+                    if self.isShowIncorrect():
+                        self.__label_wrong.setText('Incorrecto')
+
                     # break
                 else:
-                    self.__label_wrong.setText('Correcto')
                     self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
+                    if self.isShowCorrect():
+                        self.__label_wrong.setText('Correcto')
+
+            if not self.isWaitTimeResponse() and not responseFlag:
+                break
 
         self.__timer.cancel()
         if self.userNumber == 0:
             self.__label_wrong.setText("Sin respuesta")
             self.__infoSaver.saveAnswer('no response', self.getCurrentFrame())
 
+        time.sleep(0.5)
         return number1
 
                 

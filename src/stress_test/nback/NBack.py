@@ -112,35 +112,35 @@ class NBack(StressTest):
             self.__infoSaver.saveAnswer('no response', self.getCurrentFrame())
             print('Sin respuesta')
 
-        if response == 1 and lastLetter == firstLetter:
+        if response == 1 and lastLetter == firstLetter and self.isShowCorrect():
             self.__label_message_letter.setText('Correcto')
             self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
         
-        if response == 1 and lastLetter != firstLetter:
+        if response == 1 and lastLetter != firstLetter and self.isShowIncorrect():
             self.__label_message_letter.setText('Incorrecto')
             self.__infoSaver.saveAnswer('incorrect', self.getCurrentFrame())
 
-        if response == 2 and lastCoord == firstCoord:
+        if response == 2 and lastCoord == firstCoord and self.isShowCorrect():
             self.__label_message_matrix.setText('Correcto')
             self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
         
-        if response == 2 and lastCoord != firstCoord:
+        if response == 2 and lastCoord != firstCoord and self.isShowIncorrect():
             self.__label_message_matrix.setText('Incorrecto')
             self.__infoSaver.saveAnswer('incorrect', self.getCurrentFrame())
 
-        if response == 3 and lastCoord == firstCoord:
+        if response == 3 and lastCoord == firstCoord and self.isShowCorrect():
             self.__label_message_matrix.setText('Correcto')
             self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
         
-        if response == 3 and lastCoord != firstCoord:
+        if response == 3 and lastCoord != firstCoord and self.isShowIncorrect():
             self.__label_message_matrix.setText('Incorrecto')
             self.__infoSaver.saveAnswer('incorrect', self.getCurrentFrame())
 
-        if response == 3 and lastLetter == firstLetter:
+        if response == 3 and lastLetter == firstLetter and self.isShowCorrect():
             self.__label_message_letter.setText('Correcto')
             self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
         
-        if response == 3 and lastLetter != firstLetter:
+        if response == 3 and lastLetter != firstLetter and self.isShowIncorrect():
             self.__label_message_letter.setText('Incorrecto')
             self.__infoSaver.saveAnswer('incorrect', self.getCurrentFrame())
 
@@ -156,11 +156,11 @@ class NBack(StressTest):
         lastElement = self.__matrixQueue.queue[-1]
         firstElement = self.__matrixQueue.get()
 
-        if response == 1 and lastElement == firstElement:
+        if response == 1 and lastElement == firstElement and self.isShowCorrect():
             label_message.setText('Correcto')
             self.__infoSaver.saveAnswer('correct', self.getCurrentFrame())
         
-        if response == 1 and lastElement != firstElement:
+        if response == 1 and lastElement != firstElement and self.isShowIncorrect():
             label_message.setText('Incorrecto')
             self.__infoSaver.saveAnswer('incorrect', self.getCurrentFrame())
 
@@ -284,7 +284,8 @@ class NBack(StressTest):
             if response == -1:
                 return True
             self.__checkAnswer(response, testNumber, label_message)
-            self.__questionTransition(testNumber, round.transition)            
+            self.__questionTransition(testNumber, round.transition)  
+                      
 
         time.sleep(1)
         self.__label_nback_title.setText('Fin test {}'.format(tipo_test[testNumber-1]))
@@ -310,18 +311,22 @@ class NBack(StressTest):
         self.__showImage(coordinate)
         self.__timer()
         self.__shiftR = False
+        response = 0
 
         while self.__timer.status:
             if self.__stopFlag:
                 self.__finishTest()
-                return -1
+                response = -1
+                break
             
             if self.__shiftR:
-                self.__timer.cancel()
-                return 1
+                response=1
+                if not self.isWaitTimeResponse():
+                    self.__timer.cancel()
+                    break 
 
         self.__timer.cancel()
-        return 0 
+        return response
 
     def __runQuestion2(self):
         """
@@ -344,17 +349,24 @@ class NBack(StressTest):
         # self.__playLetter(letter)
         self.__timer()
         self.__shiftL = False
+        response = 0
+
         while self.__timer.status:
             if self.__stopFlag:
                 self.__finishTest()
-                return -1
+                response = -1
+                break
+                # return -1
             
             if self.__shiftL:
-                self.__timer.cancel()
-                return 1
+                response = 1
+                if not self.isWaitTimeResponse():
+                    self.__timer.cancel()
+                    break 
+                # return 1
 
         self.__timer.cancel()
-        return 0 
+        return response
     
     def __runQuestion3(self):
         """
