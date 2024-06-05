@@ -90,10 +90,10 @@ class NBack(StressTest):
         self.__timer.seconds = round.seconds
         self.__label_nback_title.setText("{}-Back".format(round.n))
         time.sleep(2)
-        if self.__runTest(round, self.__runQuestion1, 1, self.__label_message_matrix):
-            return True
-
         if self.__runTest(round, self.__runQuestion2, 2, self.__label_message_letter):
+            return True
+            
+        if self.__runTest(round, self.__runQuestion1, 1, self.__label_message_matrix):
             return True
         
         if self.__runTest(round, self.__runQuestion3, 3):

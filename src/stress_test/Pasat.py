@@ -71,11 +71,12 @@ class Pasat(StressTest):
         self.__timer.seconds = round.seconds
         self.__label_wrong.setText("")
         oldNumber = 0
-        self.__displayNumber(0)
         self.__playNumber(0)
+        self.__displayNumber(0)
         time.sleep(round.seconds)
         for _ in range(round.sums):
             self.__label_wrong.setText('')
+            time.sleep(0.25)
             oldNumber = self.__runSums(oldNumber)
             if oldNumber == -1:
                 return True
@@ -119,7 +120,6 @@ class Pasat(StressTest):
             self.__label_wrong.setText("Sin respuesta")
             self.__infoSaver.saveAnswer('no response', self.getCurrentFrame())
 
-        time.sleep(0.5)
         return number1
 
                 

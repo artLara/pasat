@@ -1201,7 +1201,7 @@
            </font>
           </property>
           <property name="text">
-           <string>estabas haciendo durante la prueba pasat?</string>
+           <string>estabas haciendo durante la prueba PASAT?</string>
           </property>
          </widget>
         </item>
@@ -1287,7 +1287,7 @@
            </font>
           </property>
           <property name="text">
-           <string>¿Cómo consideras que te fue en la prueba pasat?</string>
+           <string>¿Cómo consideras que te fue en la prueba PASAT?</string>
           </property>
          </widget>
         </item>
@@ -1321,7 +1321,7 @@
        <rect>
         <x>380</x>
         <y>230</y>
-        <width>401</width>
+        <width>481</width>
         <height>411</height>
        </rect>
       </property>
@@ -1333,7 +1333,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>399</width>
+         <width>479</width>
          <height>409</height>
         </rect>
        </property>
@@ -1348,7 +1348,7 @@
            </font>
           </property>
           <property name="text">
-           <string>¿Hubo algún momento durante la prueba en el que tan</string>
+           <string>¿Hubo algún momento durante la prueba en el que te sentisté tan</string>
           </property>
          </widget>
         </item>
@@ -1376,7 +1376,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>379</width>
+             <width>459</width>
              <height>347</height>
             </rect>
            </property>
@@ -1394,8 +1394,8 @@
      <widget class="QScrollArea" name="scrollArea_26">
       <property name="geometry">
        <rect>
-        <x>790</x>
-        <y>10</y>
+        <x>890</x>
+        <y>20</y>
         <width>291</width>
         <height>411</height>
        </rect>
@@ -1469,7 +1469,7 @@
      <widget class="QPushButton" name="pushButton_pasat_guardar">
       <property name="geometry">
        <rect>
-        <x>850</x>
+        <x>950</x>
         <y>440</y>
         <width>181</width>
         <height>51</height>
@@ -1519,7 +1519,7 @@
      <widget class="QLabel" name="label_guardado_pasat">
       <property name="geometry">
        <rect>
-        <x>800</x>
+        <x>900</x>
         <y>520</y>
         <width>261</width>
         <height>51</height>
@@ -2359,12 +2359,12 @@
     </widget>
     <widget class="QWidget" name="tab_15">
      <attribute name="title">
-      <string>Encuesta NBack</string>
+      <string>Encuesta N-Back</string>
      </attribute>
      <widget class="QScrollArea" name="scrollArea_36">
       <property name="geometry">
        <rect>
-        <x>790</x>
+        <x>900</x>
         <y>10</y>
         <width>291</width>
         <height>411</height>
@@ -2439,7 +2439,7 @@
      <widget class="QPushButton" name="pushButton_nback_guardar">
       <property name="geometry">
        <rect>
-        <x>840</x>
+        <x>960</x>
         <y>440</y>
         <width>181</width>
         <height>51</height>
@@ -2532,7 +2532,7 @@
            </font>
           </property>
           <property name="text">
-           <string>estabas haciendo durante la prueba pasat?</string>
+           <string>estabas haciendo durante la prueba N-Back?</string>
           </property>
          </widget>
         </item>
@@ -2603,8 +2603,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>359</width>
-         <height>409</height>
+         <width>361</width>
+         <height>395</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -2618,7 +2618,7 @@
            </font>
           </property>
           <property name="text">
-           <string>¿Cómo consideras que te fue en la prueba pasat?</string>
+           <string>¿Cómo consideras que te fue en la prueba N-Back?</string>
           </property>
          </widget>
         </item>
@@ -2632,8 +2632,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>339</width>
-             <height>368</height>
+             <width>341</width>
+             <height>354</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -2652,7 +2652,7 @@
        <rect>
         <x>380</x>
         <y>230</y>
-        <width>401</width>
+        <width>471</width>
         <height>411</height>
        </rect>
       </property>
@@ -2664,7 +2664,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>399</width>
+         <width>469</width>
          <height>409</height>
         </rect>
        </property>
@@ -2679,7 +2679,7 @@
            </font>
           </property>
           <property name="text">
-           <string>¿Hubo algún momento durante la prueba en el que tan</string>
+           <string>¿Hubo algún momento durante la prueba en el que te sentisté tan</string>
           </property>
          </widget>
         </item>
@@ -2707,7 +2707,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>379</width>
+             <width>449</width>
              <height>347</height>
             </rect>
            </property>
@@ -2825,8 +2825,8 @@
      <widget class="QLabel" name="label_guardado_nback">
       <property name="geometry">
        <rect>
-        <x>810</x>
-        <y>530</y>
+        <x>920</x>
+        <y>510</y>
         <width>261</width>
         <height>51</height>
        </rect>
@@ -2943,7 +2943,7 @@
           </item>
           <item row="0" column="1">
            <property name="text">
-            <string>4</string>
+            <string>3</string>
            </property>
           </item>
           <item row="1" column="0">
@@ -3144,7 +3144,7 @@
           </item>
           <item row="0" column="1">
            <property name="text">
-            <string>3</string>
+            <string>2.5</string>
            </property>
           </item>
           <item row="1" column="0">
@@ -3154,7 +3154,7 @@
           </item>
           <item row="1" column="1">
            <property name="text">
-            <string>3</string>
+            <string>2.5</string>
            </property>
           </item>
           <item row="2" column="0">
@@ -3164,7 +3164,7 @@
           </item>
           <item row="2" column="1">
            <property name="text">
-            <string>2</string>
+            <string>1.5</string>
            </property>
           </item>
           <item row="3" column="0">
@@ -3174,7 +3174,7 @@
           </item>
           <item row="3" column="1">
            <property name="text">
-            <string>2</string>
+            <string>1.5</string>
            </property>
           </item>
          </widget>
