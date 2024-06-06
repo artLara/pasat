@@ -92,7 +92,7 @@ class NBack(StressTest):
         time.sleep(2)
         if self.__runTest(round, self.__runQuestion2, 2, self.__label_message_letter):
             return True
-            
+
         if self.__runTest(round, self.__runQuestion1, 1, self.__label_message_matrix):
             return True
         
@@ -252,8 +252,8 @@ class NBack(StressTest):
         if self.isAudio():
             mixer.music.load("media/audios/letters/{}.mp3".format(letter))
             mixer.music.play()
-            while mixer.music.get_busy():  # wait for music to finish playing
-                time.sleep(1)
+            # while mixer.music.get_busy():  # wait for music to finish playing
+            #     time.sleep(1)
 
     def __questionTransition(self, testNumber, seconds=0):
         imageName = "media/images/blank.png"
@@ -346,7 +346,7 @@ class NBack(StressTest):
         self.__displayLetter(letter)
         self.__audioLetter_thread = threading.Thread(target=self.__playLetter, kwargs={'letter':letter})
         self.__audioLetter_thread.start()
-        # self.__playLetter(letter)
+        #self.__playLetter(letter)
         self.__timer()
         self.__shiftL = False
         response = 0
