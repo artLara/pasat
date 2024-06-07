@@ -252,8 +252,8 @@ class NBack(StressTest):
         if self.isAudio():
             mixer.music.load("media/audios/letters/{}.mp3".format(letter))
             mixer.music.play()
-            # while mixer.music.get_busy():  # wait for music to finish playing
-            #     time.sleep(1)
+            while mixer.music.get_busy():  # wait for music to finish playing
+                time.sleep(1)
 
     def __questionTransition(self, testNumber, seconds=0):
         imageName = "media/images/blank.png"
@@ -280,10 +280,9 @@ class NBack(StressTest):
             self.__initSequenceCoord(testNumber,round.sums)
         
         for _ in range(round.sums): #num de preguntas
-            response = questionFuntion()
+            response = questionFuntion(testNumber, label_message)
             if response == -1:
                 return True
-            self.__checkAnswer(response, testNumber, label_message)
             self.__questionTransition(testNumber, round.transition)  
                       
 
@@ -293,7 +292,7 @@ class NBack(StressTest):
         self.__label_matrix.clear()        
         time.sleep(1.5)
 
-    def __runQuestion1(self):
+    def __runQuestion1(self, testNumber, label_message):
         """
         Number representation:
             -1: Cancel or error
@@ -312,6 +311,8 @@ class NBack(StressTest):
         self.__timer()
         self.__shiftR = False
         response = 0
+        checkAnswerFlag = True
+
 
         while self.__timer.status:
             if self.__stopFlag:
@@ -321,14 +322,20 @@ class NBack(StressTest):
             
             if self.__shiftR:
                 response=1
+                self.__shiftR = False
+                print('Shift-R pressed')
                 if not self.isWaitTimeResponse():
                     self.__timer.cancel()
                     break 
 
+            if response == 1 and checkAnswerFlag:
+                checkAnswerFlag = False
+                self.__checkAnswer(response, testNumber, label_message)
+
         self.__timer.cancel()
         return response
 
-    def __runQuestion2(self):
+    def __runQuestion2(self, testNumber, label_message):
         """
         Number representation:
             -1: Cancel or error
@@ -350,6 +357,7 @@ class NBack(StressTest):
         self.__timer()
         self.__shiftL = False
         response = 0
+        checkAnswerFlag = True
 
         while self.__timer.status:
             if self.__stopFlag:
@@ -358,17 +366,23 @@ class NBack(StressTest):
                 break
                 # return -1
             
-            if self.__shiftL:
+            if self.__shiftL :#and response != 1:
                 response = 1
+                self.__shiftL = False
+                print('Shift-L pressed')
                 if not self.isWaitTimeResponse():
                     self.__timer.cancel()
+                    self.__checkAnswer(response, testNumber, label_message)
                     break 
                 # return 1
+            if response == 1 and checkAnswerFlag:
+                checkAnswerFlag = False
+                self.__checkAnswer(response, testNumber, label_message)
 
         self.__timer.cancel()
         return response
     
-    def __runQuestion3(self):
+    def __runQuestion3(self, testNumber, label_message):
         """
         Number representation:
             -1: Cancel or error
@@ -393,6 +407,10 @@ class NBack(StressTest):
         self.__shiftL = False
         self.__shiftR = False
         response = [0,0]
+        checkAnswerFlag1 = True
+        checkAnswerFlag2 = True
+
+
         while self.__timer.status:
             if self.__stopFlag:
                 self.__finishTest()
@@ -400,13 +418,16 @@ class NBack(StressTest):
             
             if self.__shiftL:
                 self.__shiftL = False
+                print('Shift-L pressed')
                 response[0] = 1 
             
             if self.__shiftR:
                 self.__shiftR = False
+                print('Shift-R pressed')
                 response[1] = 2 
                 
             
         self.__timer.cancel()
+        self.__checkAnswer(response[0] + response[1], testNumber, label_message)
         return response[0] + response[1] 
     
