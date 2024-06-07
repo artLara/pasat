@@ -118,6 +118,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.label_usuario.setText('Usuario: {}'.format(self.__id))
         self.label_guardado_pasat.setText('')
         self.label_guardado_nback.setText('')
+        self.label_relax1.setText('')
+        self.label_relax2.setText('')
+        self.label_ins1.setText('')
+        self.label_ins2.setText('')
+
+
 
     # def __saveFormsPasat(self):
     #     self.label_guardado_pasat.setText('¡Guardado!')
@@ -140,15 +146,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __grabarRelax2(self):
         self.__initDirSaveNback()
         self.__nback.startRecording(listFlag=True)
+        self.label_relax2.setText('Grabando')
+        self.label_ins2.setText('Grabando')
+
+
 
     def __detenerRelax2(self):
         print('DetenerRelax2')
+        self.label_relax2.setText('Guardando...')
         currentTestNback = self.__nback
         currentTestNback.stopRecordingRelax1(1)
+        self.label_relax2.setText('¡Guardado exitosamente!')
+        self.label_ins2.setText('')
+
+
 
     def __detenerInstruccionesNback(self):
+        self.label_ins2.setText('Guardando...')
         currentTestNback = self.__nback
         currentTestNback.stopRecordingRelax1(2)
+        self.label_ins2.setText('¡Guardado exitosamente!')
 
     def __initDirSave(self):
         currentTest = self.__pasat
@@ -167,17 +184,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             os.makedirs(self.__path)
 
     def __grabarRelax1(self):
+        self.label_relax1.setText("Grabando")
         self.__initDirSave()
         # self.__pasat_thread = threading.Thread(target=self.__videoRecorder.start, kwargs={'currentFrame':self.__currentFrame})
         self.__pasat.startRecording(listFlag=True)
 
     def __detenerRelax1(self):
+        self.label_relax1.setText("Guardando")
         currentTest = self.__pasat
         currentTest.stopRecordingRelax1(1)
+        self.label_relax1.setText("¡Guardado exitosamente!")
+
     
     def __detenerInstrucciones(self):
         currentTest = self.__pasat
         currentTest.stopRecordingRelax1(2)
+        self.label_ins1.setText('¡Guardado exitosamente!')
+
     ### aqui termina lo que agregue
 
     def __getDataSource(self):
