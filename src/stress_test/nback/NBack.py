@@ -332,6 +332,9 @@ class NBack(StressTest):
                 checkAnswerFlag = False
                 self.__checkAnswer(response, testNumber, label_message)
 
+        if checkAnswerFlag:
+            self.__checkAnswer(response, testNumber, label_message)
+
         self.__timer.cancel()
         return response
 
@@ -378,6 +381,9 @@ class NBack(StressTest):
             if response == 1 and checkAnswerFlag:
                 checkAnswerFlag = False
                 self.__checkAnswer(response, testNumber, label_message)
+
+        if checkAnswerFlag:
+            self.__checkAnswer(response, testNumber, label_message)
 
         self.__timer.cancel()
         return response
