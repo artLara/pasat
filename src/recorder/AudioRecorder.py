@@ -10,8 +10,11 @@ class AudioRecorder:
         self.RATE = rate
         self.p = pyaudio.PyAudio() if py is None else py
         self.frames = []
-        self.stream = self.p.open(format=self.FORMAT, channels=self.CHANNELS, rate=self.RATE, input=True, frames_per_buffer=self.CHUNK)
-
+        self.stream = None
+        try:
+            self.stream = self.p.open(format=self.FORMAT, channels=self.CHANNELS, rate=self.RATE, input=True, frames_per_buffer=self.CHUNK)
+        except Exception as e:
+            print(f'[Error] error loading micro\n {e}')
     def start(self):
         self.__recording = True
         while self.__recording:

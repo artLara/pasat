@@ -19,7 +19,10 @@ class Pasat(StressTest):
         self.__label_wrong = label_wrong
         self.userNumber = -1
 
-        mixer.init()
+        try:
+            mixer.init()
+        except Exception as e:
+            print(f'[Error] error loading pygame mixer\n {e}')
 
     def __initDirSave(self):
         nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")

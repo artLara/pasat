@@ -34,7 +34,10 @@ class NBack(StressTest):
         self.__shiftR = False
         self.__shiftL = False
 
-        mixer.init()
+        try:
+            mixer.init()
+        except Exception as e:
+            print(f'[Error] error loading pygame mixer\n {e}')
 
     def __initDirSave(self):
         nameDir =  datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
